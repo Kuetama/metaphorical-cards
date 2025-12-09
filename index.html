@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Метафорические карты</title>
+  <meta name="description" content="Работа с метафорическими картами психолога. Оффлайн, с сохранением колод.">
+  
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#3498db">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%233498db%22/><text x=%2250%22 y=%2255%22 font-size=%2240%22 font-family=%22Arial%22 text-anchor=%22middle%22 fill=%22white%22>&%23x1F09B;</text></svg>">
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🃏 Метафорические карты</h1>
+  </header>
+
+  <main>
+    <!-- Выбор колоды -->
+    <section class="deck-selector">
+      <h2>Выберите колоду:</h2>
+      <select id="deckSelect"></select>
+      <button id="loadDeckBtn">Загрузить</button>
+      <button id="deleteDeckBtn" class="danger">Удалить</button>
+    </section>
+
+    <!-- Загрузка новой колоды -->
+    <section class="upload-section">
+      <h2>Добавить новую колоду:</h2>
+      <input type="file" id="uploadDeck" accept=".json">
+      <small>Формат: JSON с полями <code>name</code> и <code>cards</code></small>
+    </section>
+
+    <!-- Управление картами -->
+    <section class="controls">
+      <h2>Действия</h2>
+      <button id="shuffle">🔀 Перемешать</button>
+      <button id="drawOne">🎴 Вытянуть 1</button>
+      <button id="drawThree">🎴🎴🎴 Вытянуть 3</button>
+      <button id="showAll">👁️ Показать все</button>
+      <button id="clearField">🧹 Очистить поле</button>
+      <button id="toggleBack">🃏 Рубашка: ВКЛ</button>
+    </section>
+
+    <div id="deckInfo" class="deck-info">Колода не выбрана</div>
+    <div id="cardsContainer" class="cards-container"></div>
+  </main>
+
+  <!-- Модальное окно описания -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <span id="modalClose" class="close">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <img id="modalImage" src="" alt="" loading="lazy">
+      <p id="modalDesc"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(reg => console.log('SW registered:', reg))
+        .catch(err => console.log('SW failed:', err));
+    });
+  }
+</script>
+
+</body>
+</html>
