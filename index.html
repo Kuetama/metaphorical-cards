@@ -15,17 +15,10 @@
 </head>
 <body>
   <header>
-    <h1>🃏 Метафорические карты</h1>
+    <h1>Метафорические карты</h1>
   </header>
-
-
-
-
-
+ <section>
   <!-- Загрузка колоды -->
-  <section>
-    <!-- <h2>Добавить колоду</h2> -->
-
   <!-- Скрытый настоящий input -->
 <input type="file" id="fileInput" accept=".json" style="display: none;">
 
@@ -36,7 +29,7 @@
 
     <!-- <input type="file" id="fileInput" accept=".json" />
     <button class="glow-on-hover" onclick="loadDeckFromFile()">📥 Загрузить</button> -->
-  </section>
+ </section>
 
   <!-- Список колод -->
   <section>
@@ -46,16 +39,16 @@
 
   <!-- Управление -->
   <section>
-    <h2>Действия</h2>
-    <button class="glow-on-hover" onclick="showRandomCard()">🎴 Показать 1</button>
-    <button class="glow-on-hover" onclick="showThreeRandomCards()">🎴🎴🎴 Показать 3</button>
-    <button class="glow-on-hover" onclick="showAllCards()">👁️ Показать все</button>
-    <button class="glow-on-hover" onclick="shuffleOnTable()">🔀 Перемешать на столе</button>
-    <button class="glow-on-hover" onclick="clearTable()">🧹 Очистить стол</button>
-    <button class="glow-on-hover" id="toggleBack" onclick="toggleBack()">🃏 Рубашка: ВКЛ</button>
+    <button class="glow-on-hover" onclick="showRandomCard()">1 КАРТА</button>
+    <button class="glow-on-hover" onclick="showThreeRandomCards()">3 КАРТЫ</button>
+    <button class="glow-on-hover" onclick="showAllCards()">Показать все</button>
+    <button class="glow-on-hover" onclick="shuffleOnTable()">Перемешать</button>
+    <button class="glow-on-hover" onclick="clearTable()">Очистить стол</button>
+    <button class="glow-on-hover" id="toggleBack" onclick="toggleBack()">Рубашка: ВКЛ</button>
   </section>
 
   <!-- Стол -->
+    <section>
   <div id="deckInfo">Колода не выбрана</div>
   <div id="cardsContainer" class="cards-container"></div>
 
@@ -69,7 +62,7 @@
     </div>
   </div>
 
-
+</section>
 
   <script src="app.js"></script>
   <script>

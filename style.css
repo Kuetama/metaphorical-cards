@@ -2,35 +2,50 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: #f5f7fa;
-  color: #333;
-  padding: 16px;
-  margin: 0;
+html {
+  height: 100%;
 }
+
+body {
+    min-height: 100vh;
+     margin: 0;
+     padding: 0;
+   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(
+    to bottom,
+    #ffffff, /* Начальный цвет (белый) */
+    #f5e6ff, /* Переход к светло-фиолетовому */
+    #e6c2ff, /* Более насыщенный фиолетовый */
+    #d19cff, /* Центральный розово-фиолетовый */
+    #b37fff, /* Глубокий фиолетовый */
+    #8fb3ff  /* Конечный голубой */
+  );
+  color: #333;
+ }
 
 header {
   text-align: center;
-  margin-bottom: 24px;
 }
 
-h1 {
+h1,h2 {
+  margin: 0;
   color: #2c3e50;
-}
-
-section {
-  background: white;
-  padding: 16px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-weight: normal;
 }
 
 h2 {
-  margin-top: 0;
-  color: #2c3e50;
+  margin-bottom: 10px;
+  font-size: medium;
 }
+
+section {
+  padding: 10px;
+  background-color: rgba(179, 257, 255, 0);
+  margin-bottom: 20px;
+  /* box-shadow: 0 2px 6px rgba(0,0,0,0.1); */
+  background: none;
+}
+
 
 /* button {
   padding: 8px 16px;
@@ -63,9 +78,6 @@ button:hover {
   background: #2980b9;
 }
 
-
-
-
 button.glow-on-hover {
  padding: 10px 20px;
   border: none;
@@ -75,10 +87,10 @@ button.glow-on-hover {
   cursor: pointer;
   position: relative;
   z-index: 0;
-  border-radius: 10px;
-  margin: 0 auto 20px auto;
+  border-radius: 20px;
+  margin: 0 auto 10px auto;
   border: 1px solid #7a00ff;
-  font-size: 16px;
+  font-size: 12px;
   font-family: inherit;
   transition: all 0.3s ease;
 }
@@ -97,7 +109,7 @@ button.glow-on-hover:before {
   animation: glowing 20s linear infinite;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 button.glow-on-hover:active {
@@ -117,7 +129,7 @@ button.glow-on-hover:after {
   background: #111;
   left: 0;
   top: 0;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 @keyframes glowing {
@@ -172,8 +184,26 @@ button.glow-on-hover:after {
   border: 1px solid #ddd;
   padding: 12px;
   border-radius: 8px;
-  background: #fff;
+  background: linear-gradient(
+    to bottom,
+    #ffffff, /* Начальный цвет (белый) */
+    #f5e6ff, /* Переход к светло-фиолетовому */
+    #e6c2ff, /* Более насыщенный фиолетовый */
+    #d19cff, /* Центральный розово-фиолетовый */
+    #b37fff, /* Глубокий фиолетовый */
+    #8fb3ff  /* Конечный голубой */
+  );
   min-width: 140px;
+  font-weight: normal;
+  background-color: rgba(179, 257, 255, 0.2);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  line-height: 20px;
+}
+
+.number {
+  font-size: ;
+  margin-bottom: 20px;
 }
 
 .cards-container {
@@ -234,13 +264,13 @@ button.glow-on-hover:after {
 
 .close {
   position: absolute;
-  top: 16px;
-  right: 24px;
+     top: 7px;
+    right: 7px;
   color: #333;
   font-size: 28px;
-  font-weight: bold;
+  font-weight: normal;
   cursor: pointer;
-  background: #fff;
+  background: rgba(255,255,255,0.5);
   width: 32px;
   height: 32px;
   border-radius: 50%;

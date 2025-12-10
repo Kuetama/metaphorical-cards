@@ -8,6 +8,14 @@ const defaultDeck = {
   name: "Колода по умолчанию",
   cards: [
     { title: "Гора", image: "https://via.placeholder.com/120/92c952?text=Гора", description: "Символ цели." },
+    { title: "Ключ", image: "https://via.placeholder.com/120/d32776?text=Ключ", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://via.placeholder.com/120/d32776?text=Ключ", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://via.placeholder.com/120/d32776?text=Ключ", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://via.placeholder.com/120/d32776?text=Ключ", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://via.placeholder.com/120/d32776?text=Ключ", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://via.placeholder.com/120/d32776?text=Ключ", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://via.placeholder.com/120/d32776?text=Ключ", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://via.placeholder.com/120/d32776?text=Ключ", description: "Решение и доступ." },
     { title: "Ключ", image: "https://via.placeholder.com/120/d32776?text=Ключ", description: "Решение и доступ." }
   ]
 };
@@ -42,7 +50,6 @@ function loadDeckFromFile() {
   reader.readAsText(file);
 }
 
-
 function loadDeckFromFile(file) {
   const reader = new FileReader();
   reader.onload = (e) => {
@@ -58,9 +65,6 @@ function loadDeckFromFile(file) {
   reader.readAsText(file);
 }
 
-
-
-
 function renderDecks() {
   const container = document.getElementById("decksList");
   container.innerHTML = "";
@@ -70,8 +74,8 @@ function renderDecks() {
     div.className = "deck-item";
     const canDelete = index > 0;
     div.innerHTML = `
-      <strong>${deck.name}</strong>
-      <div>${deck.cards.length} карт</div>
+      ${deck.name}
+      <div class="number">${deck.cards.length} карт</div>
       <button class="glow-on-hover" onclick="selectDeck(${index})">Выбрать</button>
       ${canDelete ? `<button  class="glow-on-hover" onclick="deleteDeck(${index})">Удалить</button>` : ""}
     `;
@@ -159,96 +163,6 @@ function showAllCards() {
     }
   });
 }
-
-// function drawCards(count) {
-//   if (!currentDeck) {
-//     alert("Сначала выберите колоду!");
-//     return;
-//   }
-
-//   if (shuffledDeck.length === 0) {
-//     alert("Все карты вытянуты!");
-//     return;
-//   }
-
-//   // Берём первые N карт
-//   const drawn = shuffledDeck.slice(0, count);
-//   // Обновляем оставшиеся
-//   shuffledDeck = shuffledDeck.slice(count);
-
-//   // Отображаем
-//   const container = document.getElementById("cardsContainer");
-//   container.innerHTML = ""; // можно и не очищать — тогда будет накопление
-
-//   drawn.forEach(card => {
-//     if (isBackVisible) {
-//       const cardEl = document.createElement("div");
-//       cardEl.className = "card";
-//       cardEl.style.position = "relative";
-//       cardEl.style.perspective = "1000px";
-
-//       const inner = document.createElement("div");
-//       inner.style.transition = "transform 0.6s";
-//       inner.style.transformStyle = "preserve-3d";
-//       inner.style.position = "absolute";
-//       inner.style.width = "100%";
-//       inner.style.height = "100%";
-//       inner.style.top = "0";
-//       inner.style.left = "0";
-
-//       const front = document.createElement("div");
-//       front.style.position = "absolute";
-//       front.style.width = "100%";
-//       front.style.height = "100%";
-//       front.style.backfaceVisibility = "hidden";
-//       front.style.backgroundColor = "#2c3e50";
-//       front.style.color = "white";
-//       front.style.display = "flex";
-//       front.style.justifyContent = "center";
-//       front.style.alignItems = "center";
-//       front.style.borderRadius = "8px";
-//       front.style.fontWeight = "bold";
-//       front.textContent = "Карта";
-
-//       const back = document.createElement("div");
-//       back.style.position = "absolute";
-//       back.style.width = "100%";
-//       back.style.height = "100%";
-//       back.style.backfaceVisibility = "hidden";
-//       back.style.transform = "rotateY(180deg)";
-//       back.style.borderRadius = "8px";
-//       back.style.overflow = "hidden";
-//       back.innerHTML = `<img src="${card.image}" alt="${card.title}" style="width:100%;height:100%;object-fit:cover;">`;
-
-//       inner.appendChild(front);
-//       inner.appendChild(back);
-//       cardEl.appendChild(inner);
-
-//       cardEl.onclick = () => {
-//         if (!cardEl.dataset.flipped) {
-//           cardEl.dataset.flipped = "true";
-//           inner.style.transform = "rotateY(180deg)";
-//           setTimeout(() => showCardModal(card), 300);
-//         } else {
-//           showCardModal(card);
-//         }
-//       };
-
-//       container.appendChild(cardEl);
-//     } else {
-//       const el = document.createElement("div");
-//       el.className = "card";
-//       el.innerHTML = `<img src="${card.image}" alt="${card.title}">`;
-//       el.onclick = () => showCardModal(card);
-//       container.appendChild(el);
-//     }
-//   });
-
-//   // Обновляем статус
-//   document.getElementById("deckInfo").textContent = 
-//     `Вытянуто ${drawn.length} карт. Осталось: ${shuffledDeck.length}`;
-// }
-
 
 function showAllCards() {
   if (!currentDeck) {
@@ -351,17 +265,6 @@ function showCardModal(card) {
   document.getElementById("modalDesc").textContent = card.description;
   document.getElementById("modal").classList.remove("hidden");
 }
-
-// function closeModal() {
-//   document.getElementById("modal").classList.add("hidden");
-//   if (isBackVisible) {
-//     document.querySelectorAll(".card").forEach(el => {
-//       delete el.dataset.flipped;
-//       const inner = el.querySelector("div[style*='transform']");
-//       if (inner) inner.style.transform = "";
-//     });
-//   }
-// }
 
 function closeModal() {
   document.getElementById("modal").classList.add("hidden");
