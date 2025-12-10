@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Метафорические карты</title>
-  <meta name="description" content="Работа с метафорическими картами психолога. Оффлайн, с сохранением колод.">
+  <meta name="description" content="Работа с метафорическими картами. Оффлайн, с рубашкой и анимацией.">
   
   <!-- PWA -->
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#3498db">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%233498db%22/><text x=%2250%22 y=%2255%22 font-size=%2240%22 font-family=%22Arial%22 text-anchor=%22middle%22 fill=%22white%22>&%23x1F09B;</text></svg>">
+  <meta name="theme-color" content="#2c3e50">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%232c3e50'/><text x='50' y='55' font-size='40' fill='white'>&%23x1F09B;</text></svg>">
   
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -18,58 +18,67 @@
     <h1>🃏 Метафорические карты</h1>
   </header>
 
-  <main>
-    <!-- Выбор колоды -->
-    <section class="deck-selector">
-      <h2>Выберите колоду:</h2>
-      <select id="deckSelect"></select>
-      <button id="loadDeckBtn">Загрузить</button>
-      <button id="deleteDeckBtn" class="danger">Удалить</button>
-    </section>
 
-    <!-- Загрузка новой колоды -->
-    <section class="upload-section">
-      <h2>Добавить новую колоду:</h2>
-      <input type="file" id="uploadDeck" accept=".json">
-      <small>Формат: JSON с полями <code>name</code> и <code>cards</code></small>
-    </section>
 
-    <!-- Управление картами -->
-    <section class="controls">
-      <h2>Действия</h2>
-      <button id="shuffle">🔀 Перемешать</button>
-      <button id="drawOne">🎴 Вытянуть 1</button>
-      <button id="drawThree">🎴🎴🎴 Вытянуть 3</button>
-      <button id="showAll">👁️ Показать все</button>
-      <button id="clearField">🧹 Очистить поле</button>
-      <button id="toggleBack">🃏 Рубашка: ВКЛ</button>
-    </section>
 
-    <div id="deckInfo" class="deck-info">Колода не выбрана</div>
-    <div id="cardsContainer" class="cards-container"></div>
-  </main>
 
-  <!-- Модальное окно описания -->
+  <!-- Загрузка колоды -->
+  <section>
+    <!-- <h2>Добавить колоду</h2> -->
+
+  <!-- Скрытый настоящий input -->
+<input type="file" id="fileInput" accept=".json" style="display: none;">
+
+<!-- Кастомная кнопка -->
+<button class="glow-on-hover" onclick="document.getElementById('fileInput').click()">
+  Добавить колоду
+</button>
+
+    <!-- <input type="file" id="fileInput" accept=".json" />
+    <button class="glow-on-hover" onclick="loadDeckFromFile()">📥 Загрузить</button> -->
+  </section>
+
+  <!-- Список колод -->
+  <section>
+    <h2>Ваши колоды</h2>
+    <div id="decksList"></div>
+  </section>
+
+  <!-- Управление -->
+  <section>
+    <h2>Действия</h2>
+    <button class="glow-on-hover" onclick="showRandomCard()">🎴 Показать 1</button>
+    <button class="glow-on-hover" onclick="showThreeRandomCards()">🎴🎴🎴 Показать 3</button>
+    <button class="glow-on-hover" onclick="showAllCards()">👁️ Показать все</button>
+    <button class="glow-on-hover" onclick="shuffleOnTable()">🔀 Перемешать на столе</button>
+    <button class="glow-on-hover" onclick="clearTable()">🧹 Очистить стол</button>
+    <button class="glow-on-hover" id="toggleBack" onclick="toggleBack()">🃏 Рубашка: ВКЛ</button>
+  </section>
+
+  <!-- Стол -->
+  <div id="deckInfo">Колода не выбрана</div>
+  <div id="cardsContainer" class="cards-container"></div>
+
+  <!-- Модальное окно -->
   <div id="modal" class="modal hidden">
     <div class="modal-content">
-      <span id="modalClose" class="close">&times;</span>
-      <h2 id="modalTitle"></h2>
-      <img id="modalImage" src="" alt="" loading="lazy">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h3 id="modalTitle"></h3>
+      <img id="modalImage" src="" alt="" />
       <p id="modalDesc"></p>
     </div>
   </div>
 
-  <script src="script.js"></script>
 
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
-        .then(reg => console.log('SW registered:', reg))
-        .catch(err => console.log('SW failed:', err));
-    });
-  }
-</script>
 
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js');
+      });
+    }
+  </script>
 </body>
 </html>
+
