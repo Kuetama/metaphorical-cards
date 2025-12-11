@@ -3,19 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Метафорические карты</title>
+  <meta name="description" content="Работа с метафорическими картами. Оффлайн, с рубашкой и анимацией.">
+      <!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#3498db">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%232c3e50'/><text x='50' y='55' font-size='40' fill='white'>&%23x1F09B;</text></svg>">
+  
+  <link rel="stylesheet" href="style.css" />
+
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="theme-color" content="#3498db">
-
-<!-- Если используешь base64 — укажи SVG как apple-touch-icon не получится, поэтому лучше файл -->
-  <title>Метафорические карты</title>
-  <link rel="stylesheet" href="style.css" />
-    <!-- PWA -->
-<link rel="manifest" href="manifest.json">
 
 <!-- Иконка для iOS -->
 <link rel="apple-touch-icon" href="icon-192.png">
 </head>
+
 <body>
   <header>
     <h1>Метафорические карты</h1>
@@ -59,9 +62,13 @@
   </div>
 
   <script src="app.js"></script>
-  <script>
+<script>
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js');
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(reg => console.log('✅ SW registered:', reg.scope))
+        .catch(err => console.error('❌ SW registration failed:', err));
+    });
   }
 </script>
 </body>
