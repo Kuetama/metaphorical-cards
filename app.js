@@ -6,8 +6,11 @@ let shuffledDeck = [];
 const defaultDeck = {
   name: "Моя колода",
   cards: [
-    { title: "Гора", image: "koloda/1.png", description: "Символ цели." },
-    { title: "Ключ", image: "koloda/2.png", description: "Решение и доступ." }
+    { title: "Гора", image: "https://github.com/Kuetama/metaphorical-cards/blob/main/koloda1/1.png", description: "Символ цели." },
+    { title: "Ключ", image: "https://github.com/Kuetama/metaphorical-cards/blob/main/koloda1/2.png", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://github.com/Kuetama/metaphorical-cards/blob/main/koloda1/3.png", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://github.com/Kuetama/metaphorical-cards/blob/main/koloda1/4.png", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://github.com/Kuetama/metaphorical-cards/blob/main/koloda1/5.png", description: "Решение и доступ." }
   ]
 };
 
