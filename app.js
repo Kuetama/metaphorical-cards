@@ -6,11 +6,11 @@ let shuffledDeck = [];
 const defaultDeck = {
   name: "Моя колода",
   cards: [
-    { title: "Гора", image: "https://drive.google.com/file/d/1FWijeMdFWqNLtV0WvYYxeMGw5hJd_Cn6/view?usp=sharing", description: "Символ цели." },
-    { title: "Ключ", image: "https://drive.google.com/file/d/1UdkeMh51LI4JacYX8P2581xs1qw5ZPd_/view?usp=sharing", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://drive.google.com/file/d/1ipSINZteI6lvrNA7WQ_SFFjyK0TABsB5/view?usp=sharing", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://drive.google.com/file/d/1IvCx8sBTkCIDfd6wGxGPa6bvQZahBTn6/view?usp=sharing", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://drive.google.com/file/d/1gokEbtPE__LrSdpJ-YhlyX4k-tyUp6GQ/view?usp=sharing", description: "Решение и доступ." }
+    { title: "Гора", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/1.png", description: "Символ цели." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/2.png", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/3.png", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/4.png", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/5.png", description: "Решение и доступ." }
   ]
 };
 
