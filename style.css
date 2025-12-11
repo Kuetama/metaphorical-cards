@@ -43,7 +43,7 @@ h2 {
 section {
   padding: 10px;
   background-color: rgba(179, 257, 255, 0);
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   /* box-shadow: 0 2px 6px rgba(0,0,0,0.1); */
   background: none;
 }
@@ -176,13 +176,65 @@ button.glow-on-hover:after {
   background: #c0392b;
 }
 
-#decksList {
+/* #decksList {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+} */
+
+#decksList {
+  display: flex;
+  flex-wrap: nowrap; /* ← запрещаем перенос */
+  gap: 16px;
+  overflow-x: auto; /* ← включаем горизонтальную прокрутку */
+  overflow-y: hidden;
+  padding: 8px 0;
+  margin: 0 -8px; /* компенсируем внутренние отступы */
+  -webkit-overflow-scrolling: touch; /* плавная прокрутка на iOS */
+  scroll-snap-type: x proximity; /* опционально: привязка к карточкам */
+}
+
+#decksList::-webkit-scrollbar {
+  height: 6px; /* тонкая полоса */
+}
+
+#decksList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#decksList::-webkit-scrollbar-thumb {
+  background: #b37fff;
+  border-radius: 3px;
+}
+
+#decksList::-webkit-scrollbar-thumb:hover {
+  background: #8fb3ff;
 }
 
 .deck-item {
+  scroll-snap-align: start; /* опционально: для плавной фиксации */
+  flex: 0 0 auto; /* ← не сжимать, не растягивать */
+  width: 140px;
+  border: 1px solid #ddd;
+  padding: 12px;
+  border-radius: 8px;
+  background: linear-gradient(
+    to bottom,
+    #ffffff,
+    #f5e6ff,
+    #e6c2ff,
+    #d19cff,
+    #b37fff,
+    #8fb3ff
+  );
+  background-color: rgba(179, 127, 255, 0.2);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  line-height: 20px;
+  color: #2c3e50;
+}
+
+/* .deck-item {
   border: 1px solid #ddd;
   padding: 12px;
   border-radius: 8px;
@@ -201,7 +253,7 @@ button.glow-on-hover:after {
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   text-align: center;
   line-height: 20px;
-}
+} */
 
 .number {
   font-size: ;

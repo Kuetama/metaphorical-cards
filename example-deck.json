@@ -1,0 +1,90 @@
+{
+  "name": "Тестовая колода",
+  "cards": [
+    {
+      "title": "Остров",
+      "image": "koloda1/1.png",
+      "description": "Уединение или свобода?"
+    },
+    {
+      "title": "Фонарь",
+      "image": "koloda1/2.png",
+      "description": "Свет в темноте."
+    },
+    {
+      "title": "Фонарь",
+      "image": "koloda1/3.png",
+      "description": "Свет в темноте."
+    },
+    {
+      "title": "Фонарь",
+      "image": "koloda1/4.png",
+      "description": "Свет в темноте."
+    },
+    {
+      "title": "Фонарь",
+      "image": "koloda1/5.png",
+      "description": "Свет в темноте."
+    },
+    {
+      "title": "Фонарь",
+      "image": "koloda1/6.png",
+      "description": "Свет в темноте."
+    },
+    {
+      "title": "Фонарь",
+      "image": "koloda1/7.png",
+      "description": "Свет в темноте."
+    },
+    {
+      "title": "Фонарь",
+      "image": "koloda1/8.png",
+      "description": "Свет в темноте."
+    },
+    {
+      "title": "Фонарь",
+      "image": "koloda1/9.png",
+      "description": "Свет в темноте."
+    },
+    {
+      "title": "Фонарь",
+      "image": "koloda1/10.png",
+      "description": "Свет в темноте."
+    },
+    {
+      "title": "Фонарь",
+      "image": "koloda1/11.png",
+      "description": "Свет в темноте."
+    },
+    {
+      "title": "Фонарь",
+      "image": "koloda1/12.png",
+      "description": "Свет в темноте."
+    },
+    {
+      "title": "Фонарь",
+      "image": "koloda1/13.png",
+      "description": "Свет в темноте."
+    },
+    {
+      "title": "Фонарь",
+      "image": "koloda1/14.png",
+      "description": "Свет в темноте."
+    },
+    {
+      "title": "Фонарь",
+      "image": "koloda1/15.png",
+      "description": "Свет в темноте."
+    },
+    {
+      "title": "Фонарь",
+      "image": "koloda1/16.png",
+      "description": "Свет в темноте."
+    },
+    {
+      "title": "Фонарь",
+      "image": "koloda1/17.png",
+      "description": "Свет в темноте."
+    }
+  ]
+}

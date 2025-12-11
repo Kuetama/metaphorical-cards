@@ -1,182 +1,69 @@
-let decks = [];
+let savedDecks = JSON.parse(localStorage.getItem('metaphorDecks')) || [];
 let currentDeck = null;
-let isBackVisible = true; // по умолчанию — рубашка включена
-let shuffledDeck = []; // ← добавь рядом с currentDeck, isBackVisible
+let isBackVisible = true;
+let shuffledDeck = [];
 
-// Встроенная колода
 const defaultDeck = {
-  name: "Колода по умолчанию",
+  name: "Моя колода",
   cards: [
-    { title: "Гора", image: "https://via.placeholder.com/120/92c952?text=Гора", description: "Символ цели." },
-    { title: "Ключ", image: "https://via.placeholder.com/120/d32776?text=Ключ", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://via.placeholder.com/120/d32776?text=Ключ", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://via.placeholder.com/120/d32776?text=Ключ", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://via.placeholder.com/120/d32776?text=Ключ", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://via.placeholder.com/120/d32776?text=Ключ", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://via.placeholder.com/120/d32776?text=Ключ", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://via.placeholder.com/120/d32776?text=Ключ", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://via.placeholder.com/120/d32776?text=Ключ", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://via.placeholder.com/120/d32776?text=Ключ", description: "Решение и доступ." }
+    { title: "Гора", image: "koloda/1.png", description: "Символ цели." },
+    { title: "Ключ", image: "koloda/2.png", description: "Решение и доступ." }
   ]
 };
 
-decks.push(defaultDeck);
-renderDecks();
-
-// === Основные функции ===
-function loadDeckFromFile() {
-  const input = document.getElementById("fileInput");
-  const file = input.files[0];
-  if (!file) {
-    alert("Выберите файл .json!");
-    return;
-  }
-
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    try {
-      const deck = JSON.parse(e.target.result);
-      if (!deck.name || !Array.isArray(deck.cards) || deck.cards.length === 0) {
-        throw new Error("Неверный формат");
-      }
-      decks.push(deck);
-      renderDecks();
-      input.value = "";
-    } catch (err) {
-      alert("❌ Ошибка: файл должен быть JSON с полями name и cards.");
-      input.value = "";
-    }
-  };
-  reader.readAsText(file);
+if (savedDecks.length === 0) {
+  savedDecks = [defaultDeck];
+  localStorage.setItem('metaphorDecks', JSON.stringify(savedDecks));
 }
 
-function loadDeckFromFile(file) {
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    try {
-      const deck = JSON.parse(e.target.result);
-      if (!deck.name || !Array.isArray(deck.cards)) throw new Error();
-      decks.push(deck);
-      renderDecks();
-    } catch (err) {
-      alert("❌ Неверный формат JSON");
-    }
-  };
-  reader.readAsText(file);
-}
-
-function renderDecks() {
+function renderDeckList() {
   const container = document.getElementById("decksList");
-  container.innerHTML = "";
+  if (!container) return;
 
-  decks.forEach((deck, index) => {
-    const div = document.createElement("div");
-    div.className = "deck-item";
-    const canDelete = index > 0;
-    div.innerHTML = `
-      ${deck.name}
-      <div class="number">${deck.cards.length} карт</div>
-      <button class="glow-on-hover" onclick="selectDeck(${index})">Выбрать</button>
-      ${canDelete ? `<button  class="glow-on-hover" onclick="deleteDeck(${index})">Удалить</button>` : ""}
-    `;
-    container.appendChild(div);
+  container.innerHTML = savedDecks.map((deck, index) => `
+    <div class="deck-item">
+      ${deck.name} (${deck.cards.length} карт)
+      <br>
+      <button class="glow-on-hover">Выбрать</button>
+      ${index > 0 ? '<button class="delete-btn danger">Удалить</button>' : ''}
+    </div>
+  `).join('');
+
+  // Назначаем обработчики
+  container.querySelectorAll('.glow-on-hover').forEach((btn, i) => {
+    btn.onclick = () => selectDeck(i);
+  });
+  container.querySelectorAll('.delete-btn').forEach((btn, i) => {
+    btn.onclick = () => deleteDeck(i + 1); // +1 because index 0 is skipped
   });
 }
 
 function selectDeck(index) {
-  currentDeck = decks[index];
-  // Перемешиваем колоду при выборе
+  currentDeck = savedDecks[index];
   shuffledDeck = [...currentDeck.cards].sort(() => Math.random() - 0.5);
   document.getElementById("deckInfo").textContent = `Активна: ${currentDeck.name}`;
-  showAllCards(); // или clearTable(), если не хочешь сразу все
+  showAllCards();
+}
+
+function deleteDeck(index) {
+  if (index === 0) return;
+  if (!confirm("Удалить колоду?")) return;
+  savedDecks.splice(index, 1);
+  localStorage.setItem('metaphorDecks', JSON.stringify(savedDecks));
+  renderDeckList();
+  if (currentDeck === savedDecks[index]) {
+    currentDeck = null;
+    clearTable();
+  }
 }
 
 function showAllCards() {
-  if (!currentDeck) {
-    alert("Сначала выберите колоду!");
-    return;
-  }
+  if (!currentDeck) return;
   const container = document.getElementById("cardsContainer");
   container.innerHTML = "";
 
-  currentDeck.cards.forEach(card => {
-    if (isBackVisible) {
-      const cardEl = document.createElement("div");
-      cardEl.className = "card";
-      cardEl.style.position = "relative";
-      cardEl.style.perspective = "1000px";
-
-      const inner = document.createElement("div");
-      inner.style.transition = "transform 0.6s";
-      inner.style.transformStyle = "preserve-3d";
-      inner.style.position = "absolute";
-      inner.style.width = "100%";
-      inner.style.height = "100%";
-      inner.style.top = "0";
-      inner.style.left = "0";
-
-      const front = document.createElement("div");
-      front.style.position = "absolute";
-      front.style.width = "100%";
-      front.style.height = "100%";
-      front.style.backfaceVisibility = "hidden";
-      front.style.backgroundColor = "#2c3e50";
-      front.style.color = "white";
-      front.style.display = "flex";
-      front.style.justifyContent = "center";
-      front.style.alignItems = "center";
-      front.style.borderRadius = "8px";
-      front.style.fontWeight = "bold";
-      front.textContent = "Карта";
-
-      const back = document.createElement("div");
-      back.style.position = "absolute";
-      back.style.width = "100%";
-      back.style.height = "100%";
-      back.style.backfaceVisibility = "hidden";
-      back.style.transform = "rotateY(180deg)";
-      back.style.borderRadius = "8px";
-      back.style.overflow = "hidden";
-      back.innerHTML = `<img src="${card.image}" alt="${card.title}" style="width:100%;height:100%;object-fit:cover;">`;
-
-      inner.appendChild(front);
-      inner.appendChild(back);
-      cardEl.appendChild(inner);
-
-      cardEl.onclick = () => {
-        if (!cardEl.dataset.flipped) {
-          cardEl.dataset.flipped = "true";
-          inner.style.transform = "rotateY(180deg)";
-          setTimeout(() => showCardModal(card), 300);
-        } else {
-          showCardModal(card);
-        }
-      };
-
-      container.appendChild(cardEl);
-    } else {
-      const el = document.createElement("div");
-      el.className = "card";
-      el.innerHTML = `<img src="${card.image}" alt="${card.title}">`;
-      el.onclick = () => showCardModal(card);
-      container.appendChild(el);
-    }
-  });
-}
-
-function showAllCards() {
-  if (!currentDeck) {
-    alert("Сначала выберите колоду!");
-    return;
-  }
-
-  const container = document.getElementById("cardsContainer");
-  container.innerHTML = "";
-
-  // Используем shuffledDeck — уже перемешанную при выборе колоды
   shuffledDeck.forEach(card => {
     if (isBackVisible) {
-      // === Режим рубашки: двусторонняя карта с анимацией ===
       const cardEl = document.createElement("div");
       cardEl.className = "card";
       cardEl.style.position = "relative";
@@ -191,7 +78,6 @@ function showAllCards() {
       inner.style.top = "0";
       inner.style.left = "0";
 
-      // Рубашка (лицевая сторона)
       const front = document.createElement("div");
       front.style.position = "absolute";
       front.style.width = "100%";
@@ -206,7 +92,6 @@ function showAllCards() {
       front.style.fontWeight = "bold";
       front.textContent = "Карта";
 
-      // Обратная сторона (изображение)
       const back = document.createElement("div");
       back.style.position = "absolute";
       back.style.width = "100%";
@@ -233,7 +118,6 @@ function showAllCards() {
 
       container.appendChild(cardEl);
     } else {
-      // === Без рубашки: сразу показываем изображение ===
       const el = document.createElement("div");
       el.className = "card";
       el.innerHTML = `<img src="${card.image}" alt="${card.title}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`;
@@ -243,20 +127,6 @@ function showAllCards() {
       container.appendChild(el);
     }
   });
-
-  document.getElementById("deckInfo").textContent = `Показаны все карты: ${currentDeck.name}`;
-}
-
-function clearTable() {
-  document.getElementById("cardsContainer").innerHTML = "";
-  document.getElementById("deckInfo").textContent = "Стол очищен";
-}
-
-function toggleBack() {
-  isBackVisible = !isBackVisible;
-  document.getElementById("toggleBack").textContent = 
-    isBackVisible ? "🃏 Рубашка: ВКЛ" : "🃏 Рубашка: ВЫКЛ";
-  if (currentDeck) showAllCards();
 }
 
 function showCardModal(card) {
@@ -268,115 +138,98 @@ function showCardModal(card) {
 
 function closeModal() {
   document.getElementById("modal").classList.add("hidden");
-  // Восстанавливаем одиночный режим
-  document.getElementById("modalImage").style.display = "block";
-  document.getElementById("modalDesc").innerHTML = ""; // очищаем, если был HTML
 }
 
-document.getElementById('fileInput').addEventListener('change', function(e) {
-  const file = e.target.files[0];
-  if (file) {
-    // Обработка файла (как у тебя уже есть)
-    loadDeckFromFile(file);
-  }
-});
-
 function showRandomCard() {
-  if (!currentDeck || !currentDeck.cards || currentDeck.cards.length === 0) {
-    alert("Нет активной колоды или карт!");
-    return;
-  }
-
-  const randomIndex = Math.floor(Math.random() * currentDeck.cards.length);
-  const card = currentDeck.cards[randomIndex];
+  if (!currentDeck) return alert("Нет активной колоды!");
+  const card = currentDeck.cards[Math.floor(Math.random() * currentDeck.cards.length)];
   showCardModal(card);
 }
 
 function showThreeRandomCards() {
-  if (!currentDeck || !currentDeck.cards || currentDeck.cards.length === 0) {
-    alert("Нет активной колоды или карт!");
-    return;
-  }
-
-  const deck = currentDeck.cards;
-  const uniqueCards = [...new Set(
-    Array.from({length: 3}, () => deck[Math.floor(Math.random() * deck.length)])
-  )].slice(0, 3);
-
-  // Формируем HTML для трёх карт
-  let cardsHtml = uniqueCards.map(card => `
-    <div style="display:inline-block; margin:10px; text-align:center; max-width:200px;">
-      <img src="${card.image}" alt="${card.title}" style="width:100%; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.2);">
-      <h4 style="margin:8px 0;">${card.title}</h4>
-      <p style="font-size:14px;">${card.description}</p>
-    </div>
-  `).join('');
-
-  // Меняем модальное окно на множественный режим
+  if (!currentDeck) return alert("Нет активной колоды!");
+  const cards = currentDeck.cards;
+  const unique = [...new Set(Array.from({length: 100}, () => Math.floor(Math.random() * cards.length)))].slice(0, 3);
+  let html = unique.map(i => {
+    const c = cards[i];
+    return `<div style="display:inline-block;margin:10px;text-align:center;max-width:180px;">
+      <img src="${c.image}" style="width:100%;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,0.2);">
+      <div>${c.title}</div>
+      <div>${c.description}</div>
+    </div>`;
+  }).join('');
   document.getElementById("modalTitle").textContent = "Три карты";
   document.getElementById("modalImage").style.display = "none";
-  document.getElementById("modalDesc").innerHTML = cardsHtml;
+  document.getElementById("modalDesc").innerHTML = html;
   document.getElementById("modal").classList.remove("hidden");
-}
-
-function deleteDeck(index) {
-  if (index === 0) return;
-  const deckToDelete = decks[index];
-  const isActive = currentDeck === deckToDelete;
-
-  if (confirm("Удалить колоду «" + deckToDelete.name + "»?")) {
-    decks.splice(index, 1);
-    if (isActive) {
-      currentDeck = null;
-      clearTable();
-    }
-    renderDecks();
-  }
 }
 
 function shuffleOnTable() {
   const container = document.getElementById("cardsContainer");
   const cards = Array.from(container.children);
-
-  if (cards.length === 0) {
-    alert("Нет карт на столе для перемешивания!");
-    return;
-  }
-
-  // Добавляем визуальный фидбек
+  if (cards.length === 0) return alert("Нет карт!");
   container.classList.add("shuffle");
-
-  // Анимируем "встряхивание"
-  cards.forEach(card => {
-    card.classList.add("shuffle-move");
-  });
-
-  // Через 300 мс — перемешиваем порядок
+  cards.forEach(c => c.classList.add("shuffle-move"));
   setTimeout(() => {
-    // Убираем анимацию
-    cards.forEach(card => {
-      card.classList.remove("shuffle-move");
-    });
-
-    // Перемешиваем массив элементов
-    const shuffledCards = [...cards].sort(() => Math.random() - 0.5);
-
-    // Очищаем и добавляем в новом порядке
+    cards.forEach(c => c.classList.remove("shuffle-move"));
+    const shuffled = [...cards].sort(() => Math.random() - 0.5);
     container.innerHTML = "";
-    shuffledCards.forEach(card => {
-      container.appendChild(card);
-    });
-
+    shuffled.forEach(c => container.appendChild(c));
     container.classList.remove("shuffle");
   }, 300);
 }
 
-// Глобальные функции для HTML
-window.loadDeckFromFile = loadDeckFromFile;
-window.selectDeck = selectDeck;
-window.showAllCards = showAllCards;
-window.clearTable = clearTable;
-window.toggleBack = toggleBack;
-window.showCardModal = showCardModal;
-window.closeModal = closeModal;
-window.deleteDeck = deleteDeck;
+function clearTable() {
+  document.getElementById("cardsContainer").innerHTML = "";
+  document.getElementById("deckInfo").textContent = "Стол очищен";
+}
+
+function toggleBack() {
+  isBackVisible = !isBackVisible;
+  document.getElementById("toggleBackBtn").textContent = 
+    isBackVisible ? "Рубашка: ВКЛ" : "Рубашка: ВЫКЛ";
+  if (currentDeck) showAllCards();
+}
+
+// Инициализация
+document.addEventListener('DOMContentLoaded', () => {
+  renderDeckList();
+
+  // Кнопки
+  document.getElementById('loadDeckBtn').addEventListener('click', () => {
+    document.getElementById('fileInput').click();
+  });
+  document.getElementById('howToBtn').addEventListener('click', () => {
+    window.location.href = 'how-to.html';
+  });
+  document.getElementById('show1Btn').addEventListener('click', showRandomCard);
+  document.getElementById('show3Btn').addEventListener('click', showThreeRandomCards);
+  document.getElementById('showAllBtn').addEventListener('click', showAllCards);
+  document.getElementById('shuffleBtn').addEventListener('click', shuffleOnTable);
+  document.getElementById('clearBtn').addEventListener('click', clearTable);
+  document.getElementById('toggleBackBtn').addEventListener('click', toggleBack);
+  document.getElementById('closeModal').addEventListener('click', closeModal);
+
+  // Загрузка файла
+  document.getElementById('fileInput').addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const deck = JSON.parse(event.target.result);
+        if (!deck.name || !Array.isArray(deck.cards) || deck.cards.length === 0) {
+          throw new Error("Неверный формат");
+        }
+        savedDecks.push(deck);
+        localStorage.setItem('metaphorDecks', JSON.stringify(savedDecks));
+        renderDeckList();
+        alert("Колода добавлена!");
+      } catch (err) {
+        alert("❌ Ошибка: " + err.message);
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = "";
+  });
+});
