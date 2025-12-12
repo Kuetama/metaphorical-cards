@@ -3,20 +3,22 @@ let currentDeck = null;
 let isBackVisible = true;
 let shuffledDeck = [];
 
-// const defaultDeck = {
-//   name: "Моя колода",
-//   backImage: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/back.png",
-//   cards: [
-//     { title: "Гора", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/1.png", description: "Символ цели." },
-//     { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/2.png", description: "Решение и доступ." },
-//     { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/3.png", description: "Решение и доступ." },
-//     { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/4.png", description: "Решение и доступ." },
-//     { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/5.png", description: "Решение и доступ." }
-//   ]
-// };
+
+const defaultDeck = {
+  name: "Комнаты души",
+  backImage: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/back.webp",
+  cards: [
+    { title: "Гора", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/1.webp", description: "Символ цели." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/2.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/3.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/4.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/5.webp", description: "Решение и доступ." }
+  ]
+};
 
 // app.js
-import { defaultDeck } from './default-deck.js';
+// import { defaultDeck } from './default-deck.js';
+
 
 if (savedDecks.length === 0) {
   savedDecks = [defaultDeck];
