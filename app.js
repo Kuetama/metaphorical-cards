@@ -126,7 +126,7 @@ front.style.overflow = "hidden";
 
 const backImg = document.createElement("img");
 // Используем рубашку из текущей колоды
-backImg.src = currentDeck.backImage || "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/watercolor.jpg";
+backImg.src = currentDeck.backImage || "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/back.png";
 backImg.alt = "Рубашка";
 backImg.style.width = "100%";
 backImg.style.height = "100%";
