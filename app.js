@@ -24,14 +24,14 @@ function renderDeckList() {
   const container = document.getElementById("decksList");
   if (!container) return;
 
-  container.innerHTML = savedDecks.map((deck, index) => `
-    <div class="deck-item">
-      ${deck.name} (${deck.cards.length} карт)
-      <br>
-      <button class="glow-on-hover">Выбрать</button>
-      ${index > 0 ? '<button class="delete-btn danger">Удалить</button>' : ''}
-    </div>
-  `).join('');
+container.innerHTML = savedDecks.map((deck, index) => `
+  <div class="deck-item">
+    <span class="deck-name">${deck.name}</span>
+    <br>
+    <button class="glow-on-hover">Выбрать</button>
+    ${index > 0 ? '<button class="delete-btn danger">Удалить</button>' : ''}
+  </div>
+`).join('');
 
   // Назначаем обработчики
   container.querySelectorAll('.glow-on-hover').forEach((btn, i) => {
@@ -41,6 +41,8 @@ function renderDeckList() {
     btn.onclick = () => deleteDeck(i + 1); // +1 because index 0 is skipped
   });
 }
+
+
 
 function selectDeck(index) {
   currentDeck = savedDecks[index];
@@ -81,40 +83,6 @@ function showAllCards() {
       inner.style.height = "100%";
       inner.style.top = "0";
       inner.style.left = "0";
-
-      // const front = document.createElement("div");
-      // front.style.position = "absolute";
-      // front.style.width = "100%";
-      // front.style.height = "100%";
-      // front.style.backfaceVisibility = "hidden";
-      // front.style.backgroundColor = "#2c3e50";
-      // front.style.color = "white";
-      // front.style.display = "flex";
-      // front.style.justifyContent = "center";
-      // front.style.alignItems = "center";
-      // front.style.borderRadius = "8px";
-      // front.style.fontWeight = "bold";
-      // front.textContent = "Карта";
-
-
-// const front = document.createElement("div");
-// front.style.position = "absolute";
-// front.style.width = "100%";
-// front.style.height = "100%";
-// front.style.backfaceVisibility = "hidden";
-// front.style.borderRadius = "8px";
-// front.style.overflow = "hidden";
-
-// const backImage = document.createElement("img");
-// backImage.src = "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/watercolor.jpg";
-// backImage.alt = "Рубашка";
-// backImage.style.width = "100%";
-// backImage.style.height = "100%";
-// backImage.style.objectFit = "cover";
-
-// front.appendChild(backImage);
-
-
 
 const front = document.createElement("div");
 front.style.position = "absolute";
@@ -207,21 +175,6 @@ function showThreeRandomCards() {
   document.getElementById("modalDesc").innerHTML = html;
   document.getElementById("modal").classList.remove("hidden");
 }
-
-// function shuffleOnTable() {
-//   const container = document.getElementById("cardsContainer");
-//   const cards = Array.from(container.children);
-//   if (cards.length === 0) return alert("Нет карт!");
-//   container.classList.add("shuffle");
-//   cards.forEach(c => c.classList.add("shuffle-move"));
-//   setTimeout(() => {
-//     cards.forEach(c => c.classList.remove("shuffle-move"));
-//     const shuffled = [...cards].sort(() => Math.random() - 0.5);
-//     container.innerHTML = "";
-//     shuffled.forEach(c => container.appendChild(c));
-//     container.classList.remove("shuffle");
-//   }, 300);
-// }
 
 
 function shuffleOnTable() {

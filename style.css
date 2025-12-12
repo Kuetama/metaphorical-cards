@@ -36,18 +36,14 @@ h1,h2,h3 {
 }
 
 h2 {
-  margin-bottom: 10px;
-  font-size: medium;
+   font-size: medium;
 }
 
 section {
-  padding: 10px;
+  padding: 0 20px;
   background-color: rgba(179, 257, 255, 0);
-  /* margin-bottom: 20px; */
-  /* box-shadow: 0 2px 6px rgba(0,0,0,0.1); */
   background: none;
 }
-
 
 /* button {
   padding: 8px 16px;
@@ -63,7 +59,6 @@ section {
 button:hover {
   background: #2980b9;
 } */
-
 
 .default-btn {
   background: #3498db;
@@ -140,9 +135,6 @@ button.glow-on-hover:after {
   100% { background-position: 0 0; }
 }
 
-
-
-
 .delete-btn {
  padding: 10px 20px;
   border: none;
@@ -204,11 +196,6 @@ button.glow-on-hover:hover:before {
 }
 
 
-
-
-
-
-
 /* Анимация перемешивания */
 .cards-container.shuffle {
   opacity: 0.7;
@@ -225,8 +212,6 @@ button.glow-on-hover:hover:before {
   75% { transform: translateY(-10px) rotate(3deg); }
   100% { transform: translateY(0) rotate(0); }
 }
-
-
 
 
 .danger {
@@ -302,46 +287,41 @@ button.glow-on-hover:hover:before {
   color: #2c3e50;
 }
 
-/* .deck-item {
-  border: 1px solid #ddd;
-  padding: 12px;
-  border-radius: 8px;
-  background: linear-gradient(
-    to bottom,
-    #ffffff, /* Начальный цвет (белый) */
-    #f5e6ff, /* Переход к светло-фиолетовому */
-    #e6c2ff, /* Более насыщенный фиолетовый */
-    #d19cff, /* Центральный розово-фиолетовый */
-    #b37fff, /* Глубокий фиолетовый */
-    #8fb3ff  /* Конечный голубой */
-  );
-  min-width: 140px;
-  font-weight: normal;
-  background-color: rgba(179, 257, 255, 0.2);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  text-align: center;
-  line-height: 20px;
-} */
+.deck-name {
+  font-size: ;
+   color: #b37fff;
+  margin-bottom: 4px;
+  display: block;
+}
 
 .number {
-  font-size: ;
   margin-bottom: 20px;
 }
 
 .cards-container {
   display: flex;
-  gap: 16px;
+  gap: 10px;
   margin-top: 20px;
   flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 700px;
 }
 
 .card {
-  width: 120px;
+  width: calc((100%-20px) / 3);
+  min-width: 60px;
   height: 180px;
   cursor: pointer;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  aspect-ratio: 2 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  will-change: transform; /* оптимизация анимации */
 }
 
 .card img {
@@ -387,8 +367,8 @@ button.glow-on-hover:hover:before {
 
 .close {
   position: absolute;
-     top: 7px;
-    right: 7px;
+  top: 7px;
+  right: 7px;
   color: #333;
   font-size: 28px;
   font-weight: normal;
@@ -401,4 +381,12 @@ button.glow-on-hover:hover:before {
   justify-content: center;
   align-items: center;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 567px) {
+section {
+  padding: 0 5px;
+
+}
+
 }
