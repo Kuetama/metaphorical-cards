@@ -5,6 +5,7 @@ let shuffledDeck = [];
 
 const defaultDeck = {
   name: "Моя колода",
+  backImage: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/back.png",
   cards: [
     { title: "Гора", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/1.png", description: "Символ цели." },
     { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/2.png", description: "Решение и доступ." },
@@ -81,19 +82,59 @@ function showAllCards() {
       inner.style.top = "0";
       inner.style.left = "0";
 
-      const front = document.createElement("div");
-      front.style.position = "absolute";
-      front.style.width = "100%";
-      front.style.height = "100%";
-      front.style.backfaceVisibility = "hidden";
-      front.style.backgroundColor = "#2c3e50";
-      front.style.color = "white";
-      front.style.display = "flex";
-      front.style.justifyContent = "center";
-      front.style.alignItems = "center";
-      front.style.borderRadius = "8px";
-      front.style.fontWeight = "bold";
-      front.textContent = "Карта";
+      // const front = document.createElement("div");
+      // front.style.position = "absolute";
+      // front.style.width = "100%";
+      // front.style.height = "100%";
+      // front.style.backfaceVisibility = "hidden";
+      // front.style.backgroundColor = "#2c3e50";
+      // front.style.color = "white";
+      // front.style.display = "flex";
+      // front.style.justifyContent = "center";
+      // front.style.alignItems = "center";
+      // front.style.borderRadius = "8px";
+      // front.style.fontWeight = "bold";
+      // front.textContent = "Карта";
+
+
+// const front = document.createElement("div");
+// front.style.position = "absolute";
+// front.style.width = "100%";
+// front.style.height = "100%";
+// front.style.backfaceVisibility = "hidden";
+// front.style.borderRadius = "8px";
+// front.style.overflow = "hidden";
+
+// const backImage = document.createElement("img");
+// backImage.src = "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/watercolor.jpg";
+// backImage.alt = "Рубашка";
+// backImage.style.width = "100%";
+// backImage.style.height = "100%";
+// backImage.style.objectFit = "cover";
+
+// front.appendChild(backImage);
+
+
+
+const front = document.createElement("div");
+front.style.position = "absolute";
+front.style.width = "100%";
+front.style.height = "100%";
+front.style.backfaceVisibility = "hidden";
+front.style.borderRadius = "8px";
+front.style.overflow = "hidden";
+
+const backImg = document.createElement("img");
+// Используем рубашку из текущей колоды
+backImg.src = currentDeck.backImage || "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/watercolor.jpg";
+backImg.alt = "Рубашка";
+backImg.style.width = "100%";
+backImg.style.height = "100%";
+backImg.style.objectFit = "cover";
+
+front.appendChild(backImg);
+
+
 
       const back = document.createElement("div");
       back.style.position = "absolute";
@@ -167,20 +208,72 @@ function showThreeRandomCards() {
   document.getElementById("modal").classList.remove("hidden");
 }
 
+// function shuffleOnTable() {
+//   const container = document.getElementById("cardsContainer");
+//   const cards = Array.from(container.children);
+//   if (cards.length === 0) return alert("Нет карт!");
+//   container.classList.add("shuffle");
+//   cards.forEach(c => c.classList.add("shuffle-move"));
+//   setTimeout(() => {
+//     cards.forEach(c => c.classList.remove("shuffle-move"));
+//     const shuffled = [...cards].sort(() => Math.random() - 0.5);
+//     container.innerHTML = "";
+//     shuffled.forEach(c => container.appendChild(c));
+//     container.classList.remove("shuffle");
+//   }, 300);
+// }
+
+
 function shuffleOnTable() {
   const container = document.getElementById("cardsContainer");
   const cards = Array.from(container.children);
   if (cards.length === 0) return alert("Нет карт!");
-  container.classList.add("shuffle");
-  cards.forEach(c => c.classList.add("shuffle-move"));
+
+  // Блокируем повторный запуск во время анимации
+  if (container.classList.contains('shuffling')) return;
+  container.classList.add('shuffling');
+
+  // 1. Запоминаем текущие позиции (First)
+  const firstRects = cards.map(card => card.getBoundingClientRect());
+
+  // 2. Создаём новый случайный порядок (но не меняем DOM ещё!)
+  const shuffled = [...cards].sort(() => Math.random() - 0.5);
+
+  // 3. Применяем новый порядок в DOM
+  container.replaceChildren(...shuffled);
+
+  // 4. Получаем новые позиции (Last)
+  const lastRects = cards.map(card => card.getBoundingClientRect());
+
+  // 5. Инвертируем: сдвигаем визуально, чтобы карточки остались "на месте"
+  cards.forEach((card, i) => {
+    const dx = firstRects[i].left - lastRects[i].left;
+    const dy = firstRects[i].top - lastRects[i].top;
+    card.style.transform = `translate(${dx}px, ${dy}px)`;
+    card.style.transition = 'none';
+  });
+
+  // Принудительный reflow
+  container.offsetHeight;
+
+  // 6. Запускаем анимацию: убираем сдвиг → карточки "улетают" к новым позициям
+  cards.forEach(card => {
+    card.style.transition = 'transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1)';
+    card.style.transform = 'translate(0, 0)';
+  });
+
+  // 7. Очищаем после анимации
   setTimeout(() => {
-    cards.forEach(c => c.classList.remove("shuffle-move"));
-    const shuffled = [...cards].sort(() => Math.random() - 0.5);
-    container.innerHTML = "";
-    shuffled.forEach(c => container.appendChild(c));
-    container.classList.remove("shuffle");
-  }, 300);
+    cards.forEach(card => {
+      card.style.transition = '';
+      card.style.transform = '';
+    });
+    container.classList.remove('shuffling');
+  }, 700);
 }
+
+
+
 
 function clearTable() {
   document.getElementById("cardsContainer").innerHTML = "";
