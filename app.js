@@ -3,7 +3,6 @@ let currentDeck = null;
 let isBackVisible = true;
 let shuffledDeck = [];
 
-
 const defaultDeck = {
   name: "Комнаты души",
   backImage: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/back.webp",
@@ -45,10 +44,6 @@ const defaultDeck = {
   ]
 };
 
-// app.js
-// import { defaultDeck } from './default-deck.js';
-
-
 if (savedDecks.length === 0) {
   savedDecks = [defaultDeck];
   localStorage.setItem('metaphorDecks', JSON.stringify(savedDecks));
@@ -58,31 +53,28 @@ function renderDeckList() {
   const container = document.getElementById("decksList");
   if (!container) return;
 
-container.innerHTML = savedDecks.map((deck, index) => `
-  <div class="deck-item">
-    <span class="deck-name">${deck.name}</span>
-    <br>
-    <button class="glow-on-hover">Выбрать</button>
-    ${index > 0 ? '<button class="delete-btn danger">Удалить</button>' : ''}
-  </div>
-`).join('');
+  container.innerHTML = savedDecks.map((deck, index) => `
+    <div class="deck-item">
+      <span class="deck-name">${deck.name}</span>
+      <br>
+      <button class="glow-on-hover">Выбрать</button>
+      ${index > 0 ? '<button class="delete-btn danger">Удалить</button>' : ''}
+    </div>
+  `).join('');
 
-  // Назначаем обработчики
   container.querySelectorAll('.glow-on-hover').forEach((btn, i) => {
     btn.onclick = () => selectDeck(i);
   });
   container.querySelectorAll('.delete-btn').forEach((btn, i) => {
-    btn.onclick = () => deleteDeck(i + 1); // +1 because index 0 is skipped
+    btn.onclick = () => deleteDeck(i + 1);
   });
 }
-
-
 
 function selectDeck(index) {
   currentDeck = savedDecks[index];
   shuffledDeck = [...currentDeck.cards].sort(() => Math.random() - 0.5);
   document.getElementById("deckInfo").textContent = `Активна: ${currentDeck.name}`;
-  showAllCards();
+  showAllCards(); // ← остаётся!
 }
 
 function deleteDeck(index) {
@@ -97,6 +89,7 @@ function deleteDeck(index) {
   }
 }
 
+// ОСТАВЛЯЕМ ЭТУ ФУНКЦИЮ — она нужна!
 function showAllCards() {
   if (!currentDeck) return;
   const container = document.getElementById("cardsContainer");
@@ -118,25 +111,21 @@ function showAllCards() {
       inner.style.top = "0";
       inner.style.left = "0";
 
-const front = document.createElement("div");
-front.style.position = "absolute";
-front.style.width = "100%";
-front.style.height = "100%";
-front.style.backfaceVisibility = "hidden";
-front.style.borderRadius = "8px";
-front.style.overflow = "hidden";
+      const front = document.createElement("div");
+      front.style.position = "absolute";
+      front.style.width = "100%";
+      front.style.height = "100%";
+      front.style.backfaceVisibility = "hidden";
+      front.style.borderRadius = "8px";
+      front.style.overflow = "hidden";
 
-const backImg = document.createElement("img");
-// Используем рубашку из текущей колоды
-backImg.src = currentDeck.backImage || "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/back.webp";
-backImg.alt = "Рубашка";
-backImg.style.width = "100%";
-backImg.style.height = "100%";
-backImg.style.objectFit = "cover";
-
-front.appendChild(backImg);
-
-
+      const backImg = document.createElement("img");
+      backImg.src = currentDeck.backImage || "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/back.webp";
+      backImg.alt = "Рубашка";
+      backImg.style.width = "100%";
+      backImg.style.height = "100%";
+      backImg.style.objectFit = "cover";
+      front.appendChild(backImg);
 
       const back = document.createElement("div");
       back.style.position = "absolute";
@@ -210,29 +199,19 @@ function showThreeRandomCards() {
   document.getElementById("modal").classList.remove("hidden");
 }
 
-
 function shuffleOnTable() {
   const container = document.getElementById("cardsContainer");
   const cards = Array.from(container.children);
   if (cards.length === 0) return alert("Нет карт!");
 
-  // Блокируем повторный запуск во время анимации
   if (container.classList.contains('shuffling')) return;
   container.classList.add('shuffling');
 
-  // 1. Запоминаем текущие позиции (First)
   const firstRects = cards.map(card => card.getBoundingClientRect());
-
-  // 2. Создаём новый случайный порядок (но не меняем DOM ещё!)
   const shuffled = [...cards].sort(() => Math.random() - 0.5);
-
-  // 3. Применяем новый порядок в DOM
   container.replaceChildren(...shuffled);
-
-  // 4. Получаем новые позиции (Last)
   const lastRects = cards.map(card => card.getBoundingClientRect());
 
-  // 5. Инвертируем: сдвигаем визуально, чтобы карточки остались "на месте"
   cards.forEach((card, i) => {
     const dx = firstRects[i].left - lastRects[i].left;
     const dy = firstRects[i].top - lastRects[i].top;
@@ -240,16 +219,13 @@ function shuffleOnTable() {
     card.style.transition = 'none';
   });
 
-  // Принудительный reflow
   container.offsetHeight;
 
-  // 6. Запускаем анимацию: убираем сдвиг → карточки "улетают" к новым позициям
   cards.forEach(card => {
     card.style.transition = 'transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1)';
     card.style.transform = 'translate(0, 0)';
   });
 
-  // 7. Очищаем после анимации
   setTimeout(() => {
     cards.forEach(card => {
       card.style.transition = '';
@@ -258,9 +234,6 @@ function shuffleOnTable() {
     container.classList.remove('shuffling');
   }, 700);
 }
-
-
-
 
 function clearTable() {
   document.getElementById("cardsContainer").innerHTML = "";
@@ -271,7 +244,7 @@ function toggleBack() {
   isBackVisible = !isBackVisible;
   document.getElementById("toggleBackBtn").textContent = 
     isBackVisible ? "Рубашка: ВКЛ" : "Рубашка: ВЫКЛ";
-  if (currentDeck) showAllCards();
+  if (currentDeck) showAllCards(); // ← остаётся!
 }
 
 // Инициализация
@@ -279,22 +252,23 @@ document.addEventListener('DOMContentLoaded', () => {
   renderDeckList();
 
   // Кнопки
-  document.getElementById('loadDeckBtn').addEventListener('click', () => {
-    document.getElementById('fileInput').click();
+  document.getElementById('loadDeckBtn')?.addEventListener('click', () => {
+    document.getElementById('fileInput')?.click();
   });
-  document.getElementById('howToBtn').addEventListener('click', () => {
+  document.getElementById('howToBtn')?.addEventListener('click', () => {
     window.location.href = 'how-to.html';
   });
-  document.getElementById('show1Btn').addEventListener('click', showRandomCard);
-  document.getElementById('show3Btn').addEventListener('click', showThreeRandomCards);
-  document.getElementById('showAllBtn').addEventListener('click', showAllCards);
-  document.getElementById('shuffleBtn').addEventListener('click', shuffleOnTable);
-  document.getElementById('clearBtn').addEventListener('click', clearTable);
-  document.getElementById('toggleBackBtn').addEventListener('click', toggleBack);
-  document.getElementById('closeModal').addEventListener('click', closeModal);
+  document.getElementById('show1Btn')?.addEventListener('click', showRandomCard);
+  document.getElementById('show3Btn')?.addEventListener('click', showThreeRandomCards);
+  // УДАЛЕНА СЛЕДУЮЩАЯ СТРОКА:
+  // document.getElementById('showAllBtn').addEventListener('click', showAllCards);
+  document.getElementById('shuffleBtn')?.addEventListener('click', shuffleOnTable);
+  document.getElementById('clearBtn')?.addEventListener('click', clearTable);
+  document.getElementById('toggleBackBtn')?.addEventListener('click', toggleBack);
+  document.getElementById('closeModal')?.addEventListener('click', closeModal);
 
   // Загрузка файла
-  document.getElementById('fileInput').addEventListener('change', (e) => {
+  document.getElementById('fileInput')?.addEventListener('change', (e) => {
     const file = e.target.files[0];
     if (!file) return;
     const reader = new FileReader();
