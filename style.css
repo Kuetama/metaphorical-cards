@@ -35,6 +35,10 @@ h1,h2,h3 {
   font-weight: normal;
 }
 
+h1 {
+  margin-bottom: 5px;
+}
+
 h2 {
    font-size: medium;
 }
@@ -241,7 +245,7 @@ button.glow-on-hover:hover:before {
   gap: 16px;
   overflow-x: auto; /* ← включаем горизонтальную прокрутку */
   overflow-y: hidden;
-  padding: 8px 0;
+  padding: 8px 10px;
   margin: 0 -8px; /* компенсируем внутренние отступы */
   -webkit-overflow-scrolling: touch; /* плавная прокрутка на iOS */
   scroll-snap-type: x proximity; /* опционально: привязка к карточкам */

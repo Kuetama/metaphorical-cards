@@ -6,42 +6,42 @@ let shuffledDeck = [];
 
 const defaultDeck = {
   name: "Комнаты души",
-  backImage: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/back.webp",
+  backImage: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/back.webp",
   cards: [
-    { title: "Гора", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/1.webp", description: "Символ цели." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/2.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/3.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/4.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/5.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/6.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/7.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/8.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/9.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/10.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/11.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/12.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/13.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/14.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/15.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/16.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/17.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/18.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/19.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/20.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/21.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/22.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/23.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/24.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/25.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/26.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/27.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/28.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/29.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/30.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/31.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/32.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/33.webp", description: "Решение и доступ." },
-    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/34.webp", description: "Решение и доступ." }
+    { title: "Гора", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/1.webp", description: "Символ цели." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/2.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/3.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/4.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/5.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/6.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/7.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/8.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/9.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/10.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/11.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/12.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/13.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/14.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/15.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/16.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/17.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/18.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/19.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/20.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/21.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/22.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/23.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/24.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/25.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/26.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/27.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/28.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/29.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/30.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/31.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/32.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/33.webp", description: "Решение и доступ." },
+    { title: "Ключ", image: "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/34.webp", description: "Решение и доступ." }
   ]
 };
 
@@ -128,7 +128,7 @@ front.style.overflow = "hidden";
 
 const backImg = document.createElement("img");
 // Используем рубашку из текущей колоды
-backImg.src = currentDeck.backImage || "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/heads/main/koloda1/back.webp";
+backImg.src = currentDeck.backImage || "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/koloda1/back.webp";
 backImg.alt = "Рубашка";
 backImg.style.width = "100%";
 backImg.style.height = "100%";
