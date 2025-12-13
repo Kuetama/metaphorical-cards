@@ -287,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   document.getElementById('show1Btn').addEventListener('click', showRandomCard);
   document.getElementById('show3Btn').addEventListener('click', showThreeRandomCards);
-  document.getElementById('showAllBtn').addEventListener('click', showAllCards);
+  // document.getElementById('showAllBtn').addEventListener('click', showAllCards);
   document.getElementById('shuffleBtn').addEventListener('click', shuffleOnTable);
   document.getElementById('clearBtn').addEventListener('click', clearTable);
   document.getElementById('toggleBackBtn').addEventListener('click', toggleBack);
