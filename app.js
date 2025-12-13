@@ -128,7 +128,7 @@ front.style.overflow = "hidden";
 
 const backImg = document.createElement("img");
 // Используем рубашку из текущей колоды
-backImg.src = currentDeck.backImage || "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/refs/koloda1/back.webp";
+backImg.src = currentDeck.backImage || "https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/back.webp";
 backImg.alt = "Рубашка";
 backImg.style.width = "100%";
 backImg.style.height = "100%";
@@ -287,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   document.getElementById('show1Btn').addEventListener('click', showRandomCard);
   document.getElementById('show3Btn').addEventListener('click', showThreeRandomCards);
-  // document.getElementById('showAllBtn').addEventListener('click', showAllCards);
+  document.getElementById('showAllBtn').addEventListener('click', showAllCards);
   document.getElementById('shuffleBtn').addEventListener('click', shuffleOnTable);
   document.getElementById('clearBtn').addEventListener('click', clearTable);
   document.getElementById('toggleBackBtn').addEventListener('click', toggleBack);
