@@ -4,7 +4,7 @@
   "description": "Работа с метафорическими картами психолога",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#d19cff",
+  "background_color": "#0a3d62",
   "theme_color": "#d19cff",
   "orientation": "portrait",
   "icons": [
