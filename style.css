@@ -285,7 +285,7 @@ button.glow-on-hover:hover:before {
   scroll-snap-align: start; /* опционально: для плавной фиксации */
   flex: 0 0 auto; /* ← не сжимать, не растягивать */
   width: 120px;
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
   padding: 12px;
   border-radius: 8px;
  background: rgba(13, 134, 143, 0.1);
@@ -299,7 +299,7 @@ button.glow-on-hover:hover:before {
     #8fb3ff
   ); */
   /* background-color: rgba(13, 134, 143, 0.3); */
-  box-shadow: 0 0 33px -4px rgba(10,60,100,0.5);
+  box-shadow: 0 0 10px 0px rgba(0,0,0,0.3);
   text-align: center;
   line-height: 20px;
   color: #fff;
