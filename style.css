@@ -4,7 +4,16 @@
 
 html {
   height: 100%;
-  background: linear-gradient(
+
+  background: linear-gradient(  
+    to bottom,
+    #0a3d62,   /* глубокий тёмно-синий (верх) */
+    #1e6091,   /* средний синий (середина) */
+    #3498db,   /* светло-голубой (ниже середины) */
+    #0d868f    /* мягкий бирюзово-зелёный (низ) */
+  );
+
+    /* background: linear-gradient(
     to bottom,
     #ffffff,
     #f5e6ff,
@@ -12,7 +21,7 @@ html {
     #d19cff,
     #b37fff,
     #8fb3ff
-  );
+  ); */
   background-attachment: fixed; /* ← это важно */
   background-size: cover;
 }
@@ -22,7 +31,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  color: #333;
+  color: #fff;
 }
 
 header {
@@ -31,7 +40,8 @@ header {
 
 h1,h2,h3 {
   margin: 0;
-  color: #2c3e50;
+  /* color: #2c3e50; */
+  color: rgba(255,255,255,0.8);
   font-weight: normal;
 }
 
@@ -90,10 +100,11 @@ button.glow-on-hover {
   z-index: 0;
   border-radius: 20px;
   margin: 0 auto 10px auto;
-  border: 1px solid #7a00ff;
+  /* border: 1px solid #7a00ff; */
   font-size: 12px;
   font-family: inherit;
   transition: all 0.3s ease;
+  box-shadow: 0 0 33px -4px rgba(10,60,100,0.5);
 }
 
 button.glow-on-hover:before {
@@ -149,11 +160,12 @@ button.glow-on-hover:after {
   position: relative;
   z-index: 0;
   border-radius: 20px;
-  margin: 0 auto 10px auto;
-  border: 1px solid #7a00ff;
+  margin: 0 auto;
+  /* border: 1px solid #7a00ff; */
   font-size: 12px;
   font-family: inherit;
   transition: all 0.3s ease;
+  box-shadow: 0 0 33px -4px rgba(10,60,100,0.5);
 }
 
 .delete-btn:before {
@@ -242,11 +254,11 @@ button.glow-on-hover:hover:before {
 #decksList {
   display: flex;
   flex-wrap: nowrap; /* ← запрещаем перенос */
-  gap: 16px;
+  gap: 20px;
   overflow-x: auto; /* ← включаем горизонтальную прокрутку */
   overflow-y: hidden;
   padding: 8px 10px;
-  margin: 0 -8px; /* компенсируем внутренние отступы */
+  margin: 0 0 20px -8px; /* компенсируем внутренние отступы */
   -webkit-overflow-scrolling: touch; /* плавная прокрутка на iOS */
   scroll-snap-type: x proximity; /* опционально: привязка к карточкам */
 }
@@ -275,7 +287,8 @@ button.glow-on-hover:hover:before {
   border: 1px solid #ddd;
   padding: 12px;
   border-radius: 8px;
-  background: linear-gradient(
+ background: rgba(13, 134, 143, 0.3);
+  /* background: linear-gradient(
     to bottom,
     #ffffff,
     #f5e6ff,
@@ -283,17 +296,17 @@ button.glow-on-hover:hover:before {
     #d19cff,
     #b37fff,
     #8fb3ff
-  );
-  background-color: rgba(179, 127, 255, 0.2);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  ); */
+  /* background-color: rgba(13, 134, 143, 0.3); */
+  box-shadow: 0 0 33px -4px rgba(10,60,100,0.5);
   text-align: center;
   line-height: 20px;
-  color: #2c3e50;
+  color: #fff;
 }
 
 .deck-name {
   font-size: ;
-   color: #b37fff;
+   color: #fff;
   margin-bottom: 4px;
   display: block;
 }
