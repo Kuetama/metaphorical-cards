@@ -8,6 +8,7 @@ html {
   background: linear-gradient(  
     to bottom,
     #0a3d62,   /* глубокий тёмно-синий (верх) */
+    #0a3d62,   /* глубокий тёмно-синий (верх) */
     #1e6091,   /* средний синий (середина) */
     #3498db,   /* светло-голубой (ниже середины) */
     #0d868f    /* мягкий бирюзово-зелёный (низ) */
@@ -287,7 +288,7 @@ button.glow-on-hover:hover:before {
   border: 1px solid #ddd;
   padding: 12px;
   border-radius: 8px;
- background: rgba(13, 134, 143, 0.3);
+ background: rgba(13, 134, 143, 0.1);
   /* background: linear-gradient(
     to bottom,
     #ffffff,
@@ -364,7 +365,7 @@ button.glow-on-hover:hover:before {
 }
 
 .modal-content {
-  background: white;
+  background: rgba(13, 134, 143, 0.3);
   padding: 10px;
   border-radius: 12px;
   max-width: 90%;
