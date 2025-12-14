@@ -47,7 +47,7 @@ h1,h2,h3 {
 }
 
 h1 {
-  margin-bottom: 5px;
+  margin-bottom: 20px;
 }
 
 h2 {
@@ -58,6 +58,16 @@ section {
   padding: 0 20px;
   background-color: rgba(179, 257, 255, 0);
   background: none;
+}
+
+.actions, .top-actions {
+    gap: 15px;
+    display: flex;
+    width: fit-content;
+}
+
+.top-actions {
+  margin: auto;
 }
 
 /* button {
@@ -105,7 +115,7 @@ button.glow-on-hover {
   font-size: 12px;
   font-family: inherit;
   transition: all 0.3s ease;
-  box-shadow: 0 0 33px -4px rgba(10,60,100,0.5);
+box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.5);
 }
 
 button.glow-on-hover:before {
@@ -126,7 +136,7 @@ button.glow-on-hover:before {
 }
 
 button.glow-on-hover:active {
-  color: #000;
+  color: #ff7300;
 }
 
 button.glow-on-hover:hover:before {
@@ -166,7 +176,7 @@ button.glow-on-hover:after {
   font-size: 12px;
   font-family: inherit;
   transition: all 0.3s ease;
-  box-shadow: 0 0 33px -4px rgba(10,60,100,0.5);
+ box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.5);
 }
 
 .delete-btn:before {
@@ -187,7 +197,7 @@ button.glow-on-hover:after {
 }
 
 .delete-btn:active {
-  color: #000;
+  color: #ff7300;
 }
 
 button.glow-on-hover:hover:before {
@@ -381,6 +391,11 @@ button.glow-on-hover:hover:before {
   height: auto;
   object-fit: contain;
   margin: 12px 0;
+}
+
+#modalDesc{
+align-items: start;
+display: flex;
 }
 
 .close {

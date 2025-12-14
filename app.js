@@ -164,16 +164,33 @@ function showAllCards() {
   });
 }
 
+// function showCardModal(card) {
+//   document.getElementById("modalTitle").textContent = card.title;
+//   document.getElementById("modalImage").src = card.image;
+//   document.getElementById("modalDesc").textContent = card.description;
+//   document.getElementById("modal").classList.remove("hidden");
+// }
+
 function showCardModal(card) {
-  document.getElementById("modalTitle").textContent = card.title;
-  document.getElementById("modalImage").src = card.image;
-  document.getElementById("modalDesc").textContent = card.description;
+  const modalImage = document.getElementById("modalImage");
+  const modalDesc = document.getElementById("modalDesc");
+  const modalTitle = document.getElementById("modalTitle");
+
+  modalTitle.textContent = card.title;
+  modalImage.src = card.image;
+  modalImage.style.display = "block"; // ← КЛЮЧЕВАЯ СТРОКА: восстанавливаем видимость
+  modalDesc.textContent = card.description; // заменяет любой HTML на чистый текст
+
   document.getElementById("modal").classList.remove("hidden");
 }
+
+
+
 
 function closeModal() {
   document.getElementById("modal").classList.add("hidden");
 }
+
 
 function showRandomCard() {
   if (!currentDeck) return alert("Нет активной колоды!");
@@ -187,7 +204,7 @@ function showThreeRandomCards() {
   const unique = [...new Set(Array.from({length: 100}, () => Math.floor(Math.random() * cards.length)))].slice(0, 3);
   let html = unique.map(i => {
     const c = cards[i];
-    return `<div style="display:inline-block;margin:10px;text-align:center;max-width:180px;">
+    return `<div style="display:inline-block;margin:10px;text-align:center;max-width:250px;">
       <img src="${c.image}" style="width:100%;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,0.2);">
       <div>${c.title}</div>
       <div>${c.description}</div>
