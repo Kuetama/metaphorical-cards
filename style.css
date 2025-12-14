@@ -396,6 +396,8 @@ button.glow-on-hover:hover:before {
 #modalDesc{
 align-items: start;
 display: flex;
+flex-wrap: wrap;
+justify-content: center;
 }
 
 .close {
