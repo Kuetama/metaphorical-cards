@@ -303,7 +303,7 @@ function showAllCards() {
       backImg.alt = "Рубашка";
       backImg.style.width = "100%";
       backImg.style.height = "100%";
-      backImg.style.objectFit = "contain";
+      backImg.style.objectFit = "cover";
       front.appendChild(backImg);
 
       const back = document.createElement("div");
@@ -314,7 +314,7 @@ function showAllCards() {
       back.style.transform = "rotateY(180deg)";
       back.style.borderRadius = "8px";
       back.style.overflow = "hidden";
-      back.innerHTML = `<img src="${card.image}" alt="${card.title}" style="width:100%;height:100%;object-fit:contain;">`;
+      back.innerHTML = `<img src="${card.image}" alt="${card.title}" style="width:100%;height:100%;object-fit:cover;">`;
 
       inner.appendChild(front);
       inner.appendChild(back);
@@ -334,7 +334,7 @@ function showAllCards() {
     } else {
       const el = document.createElement("div");
       el.className = "card";
-      el.innerHTML = `<img src="${card.image}" alt="${card.title}" style="width:100%;height:100%;object-fit:contain;border-radius:8px;">`;
+      el.innerHTML = `<img src="${card.image}" alt="${card.title}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`;
       el.style.cursor = "pointer";
       el.style.boxShadow = "0 4px 8px rgba(0,0,0,0.2)";
       el.onclick = () => showCardModal(card);
