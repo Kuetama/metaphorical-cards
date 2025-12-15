@@ -549,4 +549,8 @@ button.glow-on-hover:hover:before {
   .cards-container {
     gap: 4px;
   }
+
+  .button.glow-on-hover {
+    padding: 10px 15px;
+  }
 }
