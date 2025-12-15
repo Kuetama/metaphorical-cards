@@ -541,8 +541,9 @@ button.glow-on-hover:hover:before {
 }
 
 @media (max-width: 567px) {
-  section {
-    padding: 0 5px;
+  body {
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
   .cards-container {
