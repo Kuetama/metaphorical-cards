@@ -4,17 +4,17 @@
 
 html {
   height: 100%;
-
-  background: linear-gradient(  
+  background: linear-gradient(
     to bottom,
-    #0a3d62,   /* глубокий тёмно-синий (верх) */
-    #0a3d62,   /* глубокий тёмно-синий (верх) */
-    #1e6091,   /* средний синий (середина) */
-    #3498db,   /* светло-голубой (ниже середины) */
-    #0d868f    /* мягкий бирюзово-зелёный (низ) */
+    #0a3d62,
+    /* глубокий тёмно-синий (верх) */ #0a3d62,
+    /* глубокий тёмно-синий (верх) */ #1e6091,
+    /* средний синий (середина) */ #3498db,
+    /* светло-голубой (ниже середины) */ #0d868f
+      /* мягкий бирюзово-зелёный (низ) */
   );
 
-    /* background: linear-gradient(
+  /* background: linear-gradient(
     to bottom,
     #ffffff,
     #f5e6ff,
@@ -23,7 +23,8 @@ html {
     #b37fff,
     #8fb3ff
   ); */
-  background-attachment: fixed; /* ← это важно */
+  background-attachment: fixed;
+  /* ← это важно */
   background-size: cover;
 }
 
@@ -31,7 +32,7 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   color: #fff;
 }
 
@@ -39,10 +40,12 @@ header {
   text-align: center;
 }
 
-h1,h2,h3 {
+h1,
+h2,
+h3 {
   margin: 0;
   /* color: #2c3e50; */
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
   font-weight: normal;
 }
 
@@ -51,7 +54,10 @@ h1 {
 }
 
 h2 {
-   font-size: medium;
+  font-size: medium;
+  max-width: 900px;
+  margin: auto;
+  padding-left: 10px;
 }
 
 section {
@@ -60,14 +66,17 @@ section {
   background: none;
 }
 
-.actions, .top-actions {
-    gap: 15px;
-    display: flex;
-    width: fit-content;
+.actions,
+.top-actions {
+  gap: 15px;
+  display: flex;
+  max-width: 900px;
+  margin: auto;
 }
 
 .top-actions {
   margin: auto;
+  width: fit-content;
 }
 
 /* button {
@@ -101,7 +110,7 @@ button:hover {
 }
 
 button.glow-on-hover {
- padding: 10px 20px;
+  padding: 10px 20px;
   border: none;
   outline: none;
   color: #fff;
@@ -110,17 +119,28 @@ button.glow-on-hover {
   position: relative;
   z-index: 0;
   border-radius: 20px;
-  margin: 0 auto 10px auto;
+  margin-bottom: 20px;
   /* border: 1px solid #7a00ff; */
   font-size: 12px;
   font-family: inherit;
   transition: all 0.3s ease;
-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.5);
 }
 
 button.glow-on-hover:before {
-  content: '';
-  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
   position: absolute;
   top: -2px;
   left: -2px;
@@ -145,7 +165,7 @@ button.glow-on-hover:hover:before {
 
 button.glow-on-hover:after {
   z-index: -1;
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 100%;
@@ -156,13 +176,21 @@ button.glow-on-hover:after {
 }
 
 @keyframes glowing {
-  0% { background-position: 0 0; }
-  50% { background-position: 400% 0; }
-  100% { background-position: 0 0; }
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
 }
 
 .delete-btn {
- padding: 10px 20px;
+  padding: 10px 20px;
   border: none;
   outline: none;
   color: #fff;
@@ -176,12 +204,23 @@ button.glow-on-hover:after {
   font-size: 12px;
   font-family: inherit;
   transition: all 0.3s ease;
- box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.5);
 }
 
 .delete-btn:before {
-  content: '';
-  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
   position: absolute;
   top: -2px;
   left: -2px;
@@ -206,7 +245,7 @@ button.glow-on-hover:hover:before {
 
 .delete-btn:after {
   z-index: -1;
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 100%;
@@ -217,15 +256,35 @@ button.glow-on-hover:hover:before {
 }
 
 @keyframes glowing {
-  0% { background-position: 0 0; }
-  50% { background-position: 400% 0; }
-  100% { background-position: 0 0; }
-}
+  0% {
+    background-position: 0 0;
+  }
 
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
 
 /* Анимация перемешивания */
 .cards-container.shuffle {
   opacity: 0.7;
+  display: flex;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.cards-container {
+  display: flex;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 900px;
+  gap: 20px;
 }
 
 .card.shuffle-move {
@@ -233,17 +292,31 @@ button.glow-on-hover:hover:before {
 }
 
 @keyframes shuffleMove {
-  0% { transform: translateY(0) rotate(0); }
-  25% { transform: translateY(-20px) rotate(-5deg); }
-  50% { transform: translateY(0) rotate(0); }
-  75% { transform: translateY(-10px) rotate(3deg); }
-  100% { transform: translateY(0) rotate(0); }
-}
+  0% {
+    transform: translateY(0) rotate(0);
+  }
 
+  25% {
+    transform: translateY(-20px) rotate(-5deg);
+  }
+
+  50% {
+    transform: translateY(0) rotate(0);
+  }
+
+  75% {
+    transform: translateY(-10px) rotate(3deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+}
 
 .danger {
   background: #e74c3c;
 }
+
 .danger:hover {
   background: #c0392b;
 }
@@ -262,6 +335,13 @@ button.glow-on-hover:hover:before {
   gap: 16px;
 } */
 
+#deckInfo {
+  margin: 0 auto 20px auto;
+  display: flex;
+  justify-content: start;
+  max-width: 900px;
+}
+
 #decksList {
   display: flex;
   flex-wrap: nowrap; /* ← запрещаем перенос */
@@ -269,13 +349,15 @@ button.glow-on-hover:hover:before {
   overflow-x: auto; /* ← включаем горизонтальную прокрутку */
   overflow-y: hidden;
   padding: 8px 10px;
-  margin: 0 0 20px -8px; /* компенсируем внутренние отступы */
+  margin: 0 auto 20px auto; /* компенсируем внутренние отступы */
+  max-width: 900px;
   -webkit-overflow-scrolling: touch; /* плавная прокрутка на iOS */
   scroll-snap-type: x proximity; /* опционально: привязка к карточкам */
 }
 
 #decksList::-webkit-scrollbar {
-  height: 6px; /* тонкая полоса */
+  height: 6px;
+  /* тонкая полоса */
 }
 
 #decksList::-webkit-scrollbar-track {
@@ -292,13 +374,15 @@ button.glow-on-hover:hover:before {
 }
 
 .deck-item {
-  scroll-snap-align: start; /* опционально: для плавной фиксации */
-  flex: 0 0 auto; /* ← не сжимать, не растягивать */
+  scroll-snap-align: start;
+  /* опционально: для плавной фиксации */
+  flex: 0 0 auto;
+  /* ← не сжимать, не растягивать */
   width: 120px;
   /* border: 1px solid #ddd; */
   padding: 12px;
   border-radius: 8px;
- background: rgba(13, 134, 143, 0.1);
+  background: rgba(13, 134, 143, 0.1);
   /* background: linear-gradient(
     to bottom,
     #ffffff,
@@ -309,7 +393,7 @@ button.glow-on-hover:hover:before {
     #8fb3ff
   ); */
   /* background-color: rgba(13, 134, 143, 0.3); */
-  box-shadow: 0 0 10px 0px rgba(0,0,0,0.3);
+  box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.3);
   text-align: center;
   line-height: 20px;
   color: #fff;
@@ -317,7 +401,7 @@ button.glow-on-hover:hover:before {
 
 .deck-name {
   font-size: ;
-   color: #fff;
+  color: #fff;
   margin-bottom: 4px;
   display: block;
 }
@@ -333,7 +417,7 @@ button.glow-on-hover:hover:before {
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
-  max-width: 700px;
+  max-width: 900px;
 }
 
 .card {
@@ -348,8 +432,9 @@ button.glow-on-hover:hover:before {
   font-weight: bold;
   font-size: 14px;
   border-radius: 6px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  will-change: transform; /* оптимизация анимации */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  will-change: transform;
+  /* оптимизация анимации */
 }
 
 .card img {
@@ -361,9 +446,11 @@ button.glow-on-hover:hover:before {
 /* Modal */
 .modal {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.85);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -393,11 +480,11 @@ button.glow-on-hover:hover:before {
   margin: 12px 0;
 }
 
-#modalDesc{
-align-items: start;
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
+#modalDesc {
+  align-items: start;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .close {
@@ -419,9 +506,11 @@ justify-content: center;
 }
 
 @media (max-width: 567px) {
-section {
-  padding: 0 5px;
+  section {
+    padding: 0 5px;
+  }
 
-}
-
+  .cards-container {
+    gap: 4px;
+  }
 }
