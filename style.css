@@ -372,7 +372,7 @@ button.glow-on-hover:hover:before {
 #deckInfo {
   margin: 0 auto 20px auto;
   display: flex;
-  justify-content: start;
+  justify-content: center;
   max-width: 900px;
 }
 
