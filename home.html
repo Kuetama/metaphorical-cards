@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Метафорические карты</title>
+    <meta name="theme-color" content="#0a3d62" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Метафорические карты</h1>
+    </header>
+
+    <!-- Загрузка и инструкция -->
+    <section class="top-actions">
+      <input type="file" id="fileInput" accept=".json" style="display: none" />
+      <button class="glow-on-hover" id="loadDeckBtn">Добавить колоду</button>
+      <button class="glow-on-hover" id="howToBtn">
+        Как работать с картами
+      </button>
+    </section>
+
+    <!-- Список сохранённых колод -->
+    <section>
+      <h2>Ваши колоды</h2>
+      <div id="decksList">Загрузка...</div>
+    </section>
+
+    <!-- Управление -->
+    <section class="actions">
+      <button class="glow-on-hover" id="show1Btn">1 карта</button>
+      <button class="glow-on-hover" id="show3Btn">3 карты</button>
+      <!-- <button class="glow-on-hover" id="showAllBtn">Показать все</button> -->
+    </section>
+    <section class="actions">
+      <button class="glow-on-hover" id="shuffleBtn">Перемешать</button>
+      <button class="glow-on-hover" id="clearBtn">Очистить</button>
+      <button class="glow-on-hover" id="toggleBackBtn">Рубашка: ВКЛ</button>
+    </section>
+
+    <!-- Стол -->
+    <section>
+      <div id="deckInfo">Колода не выбрана</div>
+      <div id="cardsContainer" class="cards-container"></div>
+    </section>
+
+    <!-- Модальное окно -->
+    <div id="modal" class="modal hidden">
+      <div class="modal-content">
+        <span id="closeModal" class="close">&times;</span>
+        <h3 id="modalTitle"></h3>
+        <img id="modalImage" src="" alt="" />
+        <div id="modalDesc"></div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/sw.js")
+            .then((reg) => console.log("✅ SW registered:", reg.scope))
+            .catch((err) => console.error("❌ SW registration failed:", err));
+        });
+      }
+    </script>
+  </body>
+</html>

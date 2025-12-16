@@ -1,85 +1,53 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Метафорические карты</title>
-  <meta name="description" content="Работа с метафорическими картами. Оффлайн, с рубашкой и анимацией.">
-      <!-- PWA -->
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0a3d62">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%232c3e50'/><text x='50' y='55' font-size='40' fill='white'>&%23x1F09B;</text></svg>">
-  
-  <link rel="stylesheet" href="style.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Метафорические карты</title>
+    <meta
+      name="description"
+      content="Работа с метафорическими картами. Оффлайн, с рубашкой и анимацией."
+    />
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#0a3d62" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%232c3e50'/><text x='50' y='55' font-size='40' fill='white'>&%23x1F09B;</text></svg>"
+    />
 
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="stylesheet" href="style.css" />
 
-<!-- Иконка для iOS -->
-<link rel="apple-touch-icon" href="icon-192.png">
-<!-- Иконка для Android -->
-<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
-<!-- <script type="module" src="app.js"></script> -->
-</head>
+    <!-- Иконка для iOS -->
+    <link rel="apple-touch-icon" href="icon-192.png" />
+    <!-- Иконка для Android -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
 
-<body>
-  <header>
-    <h1>Метафорические карты</h1>
-  </header>
-
-  <!-- Загрузка и инструкция -->
-  <section class="top-actions">
-
-    <input type="file" id="fileInput" accept=".json" style="display:none;">
-    <button class="glow-on-hover" id="loadDeckBtn">Добавить колоду</button>
-    <button class="glow-on-hover" id="howToBtn">Как работать с картами</button>
-
-  </section>
-
-  <!-- Список сохранённых колод -->
-  <section>
-    <h2>Ваши колоды</h2>
-    <div id="decksList">Загрузка...</div>
-  </section>
-
-  <!-- Управление -->
-  <section class="actions">
-    <button class="glow-on-hover" id="show1Btn">1 карта</button>
-    <button class="glow-on-hover" id="show3Btn">3 карты</button>
-    <!-- <button class="glow-on-hover" id="showAllBtn">Показать все</button> -->
-    </section>
-    <section class="actions">
-    <button class="glow-on-hover" id="shuffleBtn">Перемешать</button>
-    <button class="glow-on-hover" id="clearBtn">Очистить</button>
-    <button class="glow-on-hover" id="toggleBackBtn">Рубашка: ВКЛ</button>
-  </section>
-
-  <!-- Стол -->
-   <section>
-  <div id="deckInfo">Колода не выбрана</div>
-  <div id="cardsContainer" class="cards-container"></div>
-  </section>
-
-  <!-- Модальное окно -->
-  <div id="modal" class="modal hidden">
-    <div class="modal-content">
-      <span id="closeModal" class="close">&times;</span>
-      <h3 id="modalTitle"></h3>
-      <img id="modalImage" src="" alt="">
-      <div id="modalDesc"></div>
+    <!-- <script type="module" src="app.js"></script> -->
+  </head>
+  <body>
+    <div class="logo">
+      <img class="logo-img" src="logo.png">
     </div>
-  </div>
+    <div class="container">
+      <div class="buttons">
+          <a href="how-to.html"><button class="btn">
+          <svg viewBox="0 0 200 100">
+            <rect x="1" y="1" width="198" height="98" rx="8" ry="8" />
+          </svg>
+       <span>Как работать с&nbsp;метафорическими картами</span>
+        </button></a>
 
-  <script src="app.js"></script>
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
-        .then(reg => console.log('✅ SW registered:', reg.scope))
-        .catch(err => console.error('❌ SW registration failed:', err));
-    });
-  }
-</script>
-</body>
+        <a href="home.html"><button class="btn">
+          <svg viewBox="0 0 200 100">
+            <rect x="1" y="1" width="198" height="98" rx="8" ry="8" />
+          </svg>
+          <span>Мои карты</span>
+        </button></a>
+      </div>
+    </div>
+  </body>
 </html>

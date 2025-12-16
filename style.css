@@ -33,6 +33,7 @@ body {
   margin: 0;
   padding: 40px 20px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
   color: #fff;
   line-height: 4vh;
 }
@@ -60,6 +61,11 @@ h2 {
   max-width: 900px;
   margin: auto;
   padding-left: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
 }
 
 p {
@@ -301,6 +307,87 @@ button.glow-on-hover:hover:before {
   100% {
     background-position: 0 0;
   }
+}
+
+.logo {
+  padding: 200px 10px 80px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 100%;
+}
+
+.logo-img {
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+  min-width: 250px;
+  max-width: 300px;
+}
+
+/* для заставки */
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* расстояние между кнопками */
+  align-items: center;
+}
+
+.btn {
+  width: 200px;
+  height: 100px;
+  position: relative;
+  background: transparent;
+  border: none; /* никакой рамки */
+  outline: none;
+  cursor: pointer;
+  overflow: hidden; /* обрезает всё, что вылезает за пределы */
+  padding: 0;
+  color: #fff;
+}
+
+.btn::after {
+  color: #fff;
+}
+
+.btn svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  fill: none;
+  stroke: white; /* цвет линии */
+  stroke-width: 1; /* толщина обводки */
+  stroke-dasharray: 600; /* общая длина контура: ~2*(200 + 100) = 600 */
+  stroke-dashoffset: 600;
+  transition: stroke-dashoffset 0.5s ease-in-out;
+}
+
+.btn:hover svg {
+  stroke-dashoffset: 0;
+  color: #fff;
+}
+
+.btn span {
+  position: relative;
+  z-index: 1;
+  color: white;
+  font-size: 18px;
+  line-height: 4vh;
+  pointer-events: none; /* чтобы не мешал клику */
 }
 
 /* Анимация перемешивания */
