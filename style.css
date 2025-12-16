@@ -79,8 +79,6 @@ ul {
 
 section {
   padding: 0;
-  background-color: rgba(179, 257, 255, 0);
-  background: none;
 }
 
 .content {
@@ -357,23 +355,62 @@ button.glow-on-hover:hover:before {
   color: #fff;
 }
 
-.btn-pic {
+.btn-animated {
   width: 200px;
   height: 100px;
-  background-image: url(https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/blur.webp);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  border: none; /* никакой рамки */
+  position: relative;
+  background: transparent;
+  border: none;
+  border-radius: 15px;
   outline: none;
   cursor: pointer;
-  overflow: hidden; /* обрезает всё, что вылезает за пределы */
+  overflow: hidden;
   padding: 0;
-  color: #fff;
 }
 
-.btn-pic:hover {
-  opacity: 0.9;
+/* Фоновая картинка */
+.btn-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("blur.webp"); /* ← ваша картинка */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+/* SVG-обводка */
+.btn-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  fill: none;
+  stroke: white;
+  stroke-width: 1;
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  transition: stroke-dashoffset 0.5s ease-in-out;
+  pointer-events: none; /* чтобы не мешал клику */
+}
+
+.btn-animated:hover .btn-border {
+  stroke-dashoffset: 0;
+}
+
+/* Текст */
+.btn-animated span {
+  position: relative;
+  z-index: 3;
+  color: white;
+  font-size: 18px;
+  font-family: inherit;
+  pointer-events: none;
 }
 
 .btn::after {
