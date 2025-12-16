@@ -357,6 +357,25 @@ button.glow-on-hover:hover:before {
   color: #fff;
 }
 
+.btn-pic {
+  width: 200px;
+  height: 100px;
+  background-image: url(https://raw.githubusercontent.com/Kuetama/metaphorical-cards/main/koloda1/blur.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border: none; /* никакой рамки */
+  outline: none;
+  cursor: pointer;
+  overflow: hidden; /* обрезает всё, что вылезает за пределы */
+  padding: 0;
+  color: #fff;
+}
+
+.btn-pic:hover {
+  opacity: 0.9;
+}
+
 .btn::after {
   color: #fff;
 }
