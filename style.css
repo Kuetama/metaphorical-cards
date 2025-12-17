@@ -7,33 +7,122 @@ html {
   background: linear-gradient(
     to bottom,
     #0a3d62,
-    /* глубокий тёмно-синий (верх) */ #0a3d62,
-    /* глубокий тёмно-синий (верх) */ #1e6091,
-    /* средний синий (середина) */ #3498db,
-    /* светло-голубой (ниже середины) */ #0d868f
-      /* мягкий бирюзово-зелёный (низ) */
+    #0a3d62,
+    #1e6091,
+    #3498db,
+    #0d868f
   );
 
-  /* background: linear-gradient(
-    to bottom,
-    #ffffff,
-    #f5e6ff,
-    #e6c2ff,
-    #d19cff,
-    #b37fff,
-    #8fb3ff
-  ); */
   background-attachment: fixed;
-  /* ← это важно */
   background-size: cover;
 }
+
+:root {
+  --indigo: #0a3d62;
+  --indigo-middle: #1e6091;
+  --indigo-lite: #3498db;
+  --green: #0d868f;
+  --white: #fff;
+  --black: #000;
+  --gray-dark: #191919;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: local("Montserrat"),
+    url("../fonts/Montserrat-Regular.woff2") format("woff2"),
+    url("../fonts/Montserrat-Regular.woff") format("woff");
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: local("Montserrat"),
+    url("../fonts/Montserrat-Medium.woff") format("woff"),
+    url("../fonts/Montserrat-Medium.woff2") format("woff2");
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: local("Montserrat"),
+    url("../fonts/Montserrat-SemiBold.woff") format("woff"),
+    url("../fonts/Montserrat-SemiBold.woff2") format("woff2");
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: local("Montserrat"), url("../fonts/Montserrat-Bold.woff") format("woff"),
+    url("../fonts/Montserrat-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: local("Montserrat"),
+    url("../fonts/Montserrat-ExtraBold.woff") format("woff"),
+    url("../fonts/Montserrat-ExtraBold.woff2") format("woff2");
+  font-style: normal;
+  font-display: swap;
+  font-weight: 800;
+}
+:root {
+  --indigo: #11497b;
+  --white: #fff;
+  --dark-gray: #414141;
+  --blue: #47a6ff;
+  --light-green: #eef7f5;
+}
+
+/* @font-face {
+  font-family: "Muller";
+  src: local("Muller"), url("../fonts/MullerRegular.woff") format("wolf"),
+    url("../fonts/MullerRegular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Muller";
+  src: local("Muller"), url("../fonts/MullerBold.woff") format("woff"),
+    url("../fonts/MullerBold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Muller";
+  src: local("Muller"), url("../fonts/MullerLight.woff") format("wolff"),
+    url("../fonts/MullerLight.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Muller";
+  src: local("Muller"), url("../fonts/MullerMedium.woff") format("woff"),
+    url("../fonts/MullerMedium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+} */
 
 body {
   min-height: 100vh;
   margin: 0;
   padding: 40px 20px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-size: 16px;
+  /* font-family: "Muller", sans-serif; */
+  font-family: "Montserrat";
+  font-size: 14px;
+  font-weight: 400;
   color: #fff;
   line-height: 4vh;
 }
@@ -155,6 +244,7 @@ button.glow-on-hover {
   margin-bottom: 20px;
   /* border: 1px solid #7a00ff; */
   font-size: 12px;
+  font-weight: 100;
   font-family: inherit;
   transition: all 0.3s ease;
   box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.5);
@@ -241,6 +331,7 @@ button.glow-on-hover:after {
   /* border: 1px solid #7a00ff; */
   font-size: 12px;
   font-family: inherit;
+  font-weight: 100;
   transition: all 0.3s ease;
   box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.5);
 }
@@ -338,112 +429,48 @@ button.glow-on-hover:hover:before {
 .buttons {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* расстояние между кнопками */
+  gap: 60px; /* расстояние между кнопками */
   align-items: center;
 }
 
 .btn {
-  width: 200px;
-  height: 100px;
-  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  width: fit-content;
+  height: auto;
+  max-width: 300px;
+  font: inherit;
+  color: inherit;
+  text-decoration: none;
   background: transparent;
-  border: none; /* никакой рамки */
-  outline: none;
   cursor: pointer;
-  overflow: hidden; /* обрезает всё, что вылезает за пределы */
-  padding: 0;
-  color: #fff;
+  padding: 20px 30px;
+  color: white;
+  border: 0;
+  border-radius: 20px;
+  background: var(--indigo-lite);
+  box-shadow: 10px 10px 20px #0a3d62, -10px -10px 20px #39a7f1;
+  font-size: 16px;
+  font-weight: 100;
 }
 
-.btn-animated {
-  width: 200px;
-  height: 100px;
-  position: relative;
+.btn-my {
+  display: flex;
+  flex-wrap: wrap;
+  width: fit-content;
+  height: auto;
+  max-width: 300px;
+  font: inherit;
+  color: inherit;
+  text-decoration: none;
   background: transparent;
-  border: none;
-  border-radius: 15px;
-  outline: none;
   cursor: pointer;
-  overflow: hidden;
-  padding: 0;
-}
-
-/* Фоновая картинка */
-.btn-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("blur.webp"); /* ← ваша картинка */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: 1;
-}
-
-/* SVG-обводка */
-.btn-border {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  fill: none;
-  stroke: white;
-  stroke-width: 1;
-  stroke-dasharray: 600;
-  stroke-dashoffset: 600;
-  transition: stroke-dashoffset 0.5s ease-in-out;
-  pointer-events: none; /* чтобы не мешал клику */
-}
-
-.btn-animated:hover .btn-border {
-  stroke-dashoffset: 0;
-}
-
-/* Текст */
-.btn-animated span {
-  position: relative;
-  z-index: 3;
+  padding: 20px 30px;
   color: white;
-  font-size: 18px;
-  font-family: inherit;
-  pointer-events: none;
-}
-
-.btn::after {
-  color: #fff;
-}
-
-.btn svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  color: #fff;
-  fill: none;
-  stroke: white; /* цвет линии */
-  stroke-width: 1; /* толщина обводки */
-  stroke-dasharray: 600; /* общая длина контура: ~2*(200 + 100) = 600 */
-  stroke-dashoffset: 600;
-  transition: stroke-dashoffset 0.5s ease-in-out;
-}
-
-.btn:hover svg {
-  stroke-dashoffset: 0;
-  color: #fff;
-}
-
-.btn span {
-  position: relative;
-  z-index: 1;
-  color: white;
-  font-size: 18px;
-  line-height: 4vh;
-  pointer-events: none; /* чтобы не мешал клику */
+  border: 0;
+  border-radius: 20px;
+  background: #2290b8;
+  box-shadow: 20px 20px 40px #1e80a4, -20px -20px 40px #26a0cc;
 }
 
 /* Анимация перемешивания */
