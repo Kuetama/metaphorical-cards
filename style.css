@@ -170,6 +170,10 @@ section {
   padding: 0;
 }
 
+.indigo {
+  background: var(--indigo);
+}
+
 .content {
   gap: 15px;
   display: flex;
@@ -448,29 +452,10 @@ button.glow-on-hover:hover:before {
   color: white;
   border: 0;
   border-radius: 20px;
-  background: var(--indigo-lite);
-  box-shadow: 10px 10px 20px #0a3d62, -10px -10px 20px #39a7f1;
+  background: var(--indigo);
+  box-shadow: 10px 15px 20px #0a3d62, -5px -5px 20px #3091d2;
   font-size: 16px;
   font-weight: 100;
-}
-
-.btn-my {
-  display: flex;
-  flex-wrap: wrap;
-  width: fit-content;
-  height: auto;
-  max-width: 300px;
-  font: inherit;
-  color: inherit;
-  text-decoration: none;
-  background: transparent;
-  cursor: pointer;
-  padding: 20px 30px;
-  color: white;
-  border: 0;
-  border-radius: 20px;
-  background: #2290b8;
-  box-shadow: 20px 20px 40px #1e80a4, -20px -20px 40px #26a0cc;
 }
 
 /* Анимация перемешивания */
