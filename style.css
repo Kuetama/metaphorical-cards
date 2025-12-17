@@ -165,14 +165,7 @@ section {
 
 .indigo {
   /* background: linear-gradient(to bottom, #0a3d62 5%, #11497b 95%); */
-  background: linear-gradient(
-    to bottom,
-    #0a3d62,
-    #0a3d62,
-    #1e6091,
-    #1e6091,
-    #1e6091
-  );
+  background: linear-gradient(to bottom, #0a3d62, #1e6091, #1e6091);
 }
 
 .content {
