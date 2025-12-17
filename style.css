@@ -18,8 +18,8 @@ html {
 }
 
 :root {
-  --indigo: #0a3d62;
-  --indigo-middle: #1e6091;
+  --indigo-dark: #0a3d62;
+  --indigo: #1e6091;
   --indigo-lite: #3498db;
   --green: #0d868f;
   --white: #fff;
@@ -70,13 +70,6 @@ html {
   font-style: normal;
   font-display: swap;
   font-weight: 800;
-}
-:root {
-  --indigo: #11497b;
-  --white: #fff;
-  --dark-gray: #414141;
-  --blue: #47a6ff;
-  --light-green: #eef7f5;
 }
 
 /* @font-face {
@@ -171,7 +164,15 @@ section {
 }
 
 .indigo {
-  background: var(--indigo);
+  /* background: linear-gradient(to bottom, #0a3d62 5%, #11497b 95%); */
+  background: linear-gradient(
+    to bottom,
+    #0a3d62,
+    #0a3d62,
+    #1e6091,
+    #1e6091,
+    #1e6091
+  );
 }
 
 .content {
