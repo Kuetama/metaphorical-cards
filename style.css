@@ -447,9 +447,11 @@ button.glow-on-hover:hover:before {
   border: 0;
   border-radius: 20px;
   /* background: var(--indigo); */
-  background: linear-gradient(-10deg, rgb(10 61 98 / 0.8), transparent 70.71%),
+  background: linear-gradient(-5deg, rgb(10 61 98 / 0.8), transparent 70.71%),
     linear-gradient(100deg, rgb(50 145 210 / 0.8), transparent 70.71%),
-    linear-gradient(100deg, rgb(10 61 98 / 0.8), transparent 70.71%);
+    linear-gradient(270deg, rgb(50 145 210 / 0.8), transparent 50.71%),
+    linear-gradient(10deg, rgb(10 61 98 / 0.8), transparent 70.71%);
+  /* (-10deg, rgb(10 61 98 / 0.8), transparent 70.71%), */
   box-shadow: 10px 15px 20px #0a3d62, -5px -5px 20px #3091d2;
   font-size: 16px;
   font-weight: 100;
@@ -551,12 +553,12 @@ button.glow-on-hover:hover:before {
 }
 
 #decksList::-webkit-scrollbar-thumb {
-  background: #b37fff;
+  background: var(--indigo-dark);
   border-radius: 3px;
 }
 
 #decksList::-webkit-scrollbar-thumb:hover {
-  background: #8fb3ff;
+  background: var(--indigo-lite);
 }
 
 .deck-item {
