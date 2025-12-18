@@ -663,6 +663,7 @@ button.glow-on-hover:hover:before {
 .modal-content img {
   width: 100%;
   max-width: 400px;
+  min-width: 300px;
   height: auto;
   object-fit: contain;
   margin: 12px 0;
