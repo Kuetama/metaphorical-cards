@@ -237,7 +237,7 @@ function showThreeRandomCards() {
   
   let html = unique.map(i => {
     const c = cards[i];
-    return `<div style="display:inline-block;margin:10px;text-align:center;">
+    return `<div style="display:inline-block;margin:10px;text-align:center;max-width:300px;">
       <img src="${c.image}" style="width:100%;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,0.2);">
       <div style="margin-top:8px;font-weight:bold;">${c.title}</div>
       <div>${c.description}</div>
