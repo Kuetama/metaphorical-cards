@@ -2,8 +2,8 @@ let savedDecks = JSON.parse(localStorage.getItem("metaphorDecks")) || [];
 let currentDeck = null;
 let isBackVisible = true;
 let shuffledDeck = [];
-let currentModalIndex = -1; // для навигации в модалке
-let modalMode = 'single'; // 'single' или 'three'
+let currentModalIndex = -1;
+let modalSource = 'none'; // 'table', 'random', 'three'
 
 const defaultDeck = {
   name: "Комнаты души",
@@ -46,12 +46,12 @@ const defaultDeck = {
   ]
 };
 
+
 if (savedDecks.length === 0) {
   savedDecks = [defaultDeck];
   localStorage.setItem("metaphorDecks", JSON.stringify(savedDecks));
 }
 
-// === ОТОБРАЖЕНИЕ СПИСКА КОЛОД ===
 function renderDeckList() {
   const container = document.getElementById("decksList");
   if (!container) return;
@@ -67,12 +67,10 @@ function renderDeckList() {
     `)
     .join("");
 
-  // Делегирование событий
   container.onclick = (e) => {
     const deckItem = e.target.closest('.deck-item');
     if (!deckItem) return;
     const index = parseInt(deckItem.dataset.index);
-    
     if (e.target.classList.contains('select-btn')) {
       selectDeck(index);
     } else if (e.target.classList.contains('delete-btn')) {
@@ -81,15 +79,13 @@ function renderDeckList() {
   };
 }
 
-// === ВЫБОР КОЛОДЫ ===
 function selectDeck(index) {
   currentDeck = savedDecks[index];
   shuffledDeck = [...currentDeck.cards].sort(() => Math.random() - 0.5);
   document.getElementById("deckInfo").textContent = `Активна: ${currentDeck.name}`;
-  showAllCards(); // только отображает, НЕ открывает модалку
+  showAllCards();
 }
 
-// === УДАЛЕНИЕ КОЛОДЫ ===
 function deleteDeck(index) {
   if (index === 0) return;
   if (!confirm("Удалить колоду?")) return;
@@ -102,7 +98,6 @@ function deleteDeck(index) {
   }
 }
 
-// === ПОКАЗ ВСЕХ КАРТ НА СТОЛЕ ===
 function showAllCards() {
   if (!currentDeck) return;
   const container = document.getElementById("cardsContainer");
@@ -158,8 +153,14 @@ function showAllCards() {
         if (!cardEl.dataset.flipped) {
           cardEl.dataset.flipped = "true";
           inner.style.transform = "rotateY(180deg)";
-          setTimeout(() => showCardModal(card, idx), 300);
+          setTimeout(() => {
+            modalSource = 'table';
+            currentModalIndex = idx; // ← КЛЮЧЕВОЕ: сохраняем индекс
+            showCardModal(card, idx);
+          }, 300);
         } else {
+          modalSource = 'table';
+          currentModalIndex = idx; // ← КЛЮЧЕВОЕ
           showCardModal(card, idx);
         }
       };
@@ -171,17 +172,17 @@ function showAllCards() {
       el.innerHTML = `<img src="${card.image}" alt="${card.title}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`;
       el.style.cursor = "pointer";
       el.style.boxShadow = "0 4px 8px rgba(0,0,0,0.2)";
-      el.onclick = () => showCardModal(card, idx);
+      el.onclick = () => {
+        modalSource = 'table';
+        currentModalIndex = idx; // ← КЛЮЧЕВОЕ
+        showCardModal(card, idx);
+      };
       container.appendChild(el);
     }
   });
 }
 
-// === МОДАЛЬНОЕ ОКНО С НАВИГАЦИЕЙ ===
 function showCardModal(card, index) {
-  modalMode = 'single';
-  currentModalIndex = index;
-  
   const modal = document.getElementById("modal");
   const title = document.getElementById("modalTitle");
   const image = document.getElementById("modalImage");
@@ -195,9 +196,14 @@ function showCardModal(card, index) {
   image.style.display = "block";
   desc.style.display = "block";
 
-  // Показываем стрелки ТОЛЬКО в режиме single
-  prev.style.display = (index > 0) ? "block" : "none";
-  next.style.display = (index < shuffledDeck.length - 1) ? "block" : "none";
+  if (modalSource === 'table') {
+    prev.style.display = (index > 0) ? "block" : "none";
+    next.style.display = (index < shuffledDeck.length - 1) ? "block" : "none";
+    currentModalIndex = index; // ← Обновляем индекс
+  } else {
+    prev.style.display = "none";
+    next.style.display = "none";
+  }
 
   modal.classList.remove("hidden");
 }
@@ -205,23 +211,23 @@ function showCardModal(card, index) {
 function closeModal() {
   document.getElementById("modal").classList.add("hidden");
   currentModalIndex = -1;
+  modalSource = 'none';
 }
 
-// === НАВИГАЦИЯ В МОДАЛКЕ ===
 function navigateModal(delta) {
-  if (modalMode !== 'single' || currentModalIndex === -1) return;
+  if (modalSource !== 'table' || currentModalIndex === -1) return;
   const newIndex = currentModalIndex + delta;
   if (newIndex >= 0 && newIndex < shuffledDeck.length) {
+    currentModalIndex = newIndex;
     showCardModal(shuffledDeck[newIndex], newIndex);
   }
 }
 
-// === ОСТАЛЬНЫЕ ФУНКЦИИ (не изменены) ===
 function showRandomCard() {
   if (!currentDeck) return alert("Нет активной колоды!");
   const card = currentDeck.cards[Math.floor(Math.random() * currentDeck.cards.length)];
-  const index = currentDeck.cards.findIndex(c => c.image === card.image);
-  showCardModal(card, index);
+  modalSource = 'random';
+  showCardModal(card, -1);
 }
 
 function showThreeRandomCards() {
@@ -238,8 +244,7 @@ function showThreeRandomCards() {
     </div>`;
   }).join('');
   
-  modalMode = 'three';
-  
+  modalSource = 'three';
   document.getElementById("modalTitle").textContent = "Три карты";
   document.getElementById("modalImage").style.display = "none";
   document.getElementById("modalDesc").innerHTML = html;
@@ -316,20 +321,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("modalPrev")?.addEventListener("click", () => navigateModal(-1));
   document.getElementById("modalNext")?.addEventListener("click", () => navigateModal(1));
 
-
-document.getElementById("modalPrev")?.addEventListener("click", () => {
-  if (modalMode === 'single' && currentModalIndex > 0) {
-    navigateModal(-1);
-  }
-});
-
-document.getElementById("modalNext")?.addEventListener("click", () => {
-  if (modalMode === 'single' && currentModalIndex < shuffledDeck.length - 1) {
-    navigateModal(1);
-  }
-});
-  
-
   // Загрузка файла
   document.getElementById("fileInput")?.addEventListener("change", (e) => {
     const file = e.target.files[0];
@@ -353,31 +344,22 @@ document.getElementById("modalNext")?.addEventListener("click", () => {
     e.target.value = "";
   });
 
-
-
-// Свайп для режима single
-let touchStartX = 0;
-let touchEndX = 0;
-
-document.getElementById("modal")?.addEventListener('touchstart', (e) => {
-  if (modalMode !== 'single') return;
-  touchStartX = e.changedTouches[0].screenX;
-});
-
-document.getElementById("modal")?.addEventListener('touchend', (e) => {
-  if (modalMode !== 'single') return;
-  touchEndX = e.changedTouches[0].screenX;
-  const diff = touchStartX - touchEndX;
-  
-  if (Math.abs(diff) > 50) { // порог свайпа
-    if (diff > 0) {
-      // Свайп влево → следующая карта
-      navigateModal(1);
-    } else {
-      // Свайп вправо → предыдущая карта
-      navigateModal(-1);
+  // Свайп (только для режима 'table')
+  let touchStartX = 0;
+  document.getElementById("modal")?.addEventListener('touchstart', (e) => {
+    if (modalSource !== 'table') return;
+    touchStartX = e.changedTouches[0].screenX;
+  });
+  document.getElementById("modal")?.addEventListener('touchend', (e) => {
+    if (modalSource !== 'table') return;
+    const touchEndX = e.changedTouches[0].screenX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        navigateModal(1); // свайп влево → следующая
+      } else {
+        navigateModal(-1); // свайп вправо → предыдущая
+      }
     }
-  }
-});
-
+  });
 });
