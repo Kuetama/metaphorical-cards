@@ -707,3 +707,31 @@ button.glow-on-hover:hover:before {
     padding: 10px 15px;
   }
 }
+
+.modal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.7);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 18px;
+  color: #333;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.modal-nav--prev {
+  left: 20px;
+}
+
+.modal-nav--next {
+  right: 20px;
+}
+
+.modal-nav:hover {
+  background: white;
+}
