@@ -663,9 +663,9 @@ button.glow-on-hover:hover:before {
 
 .modal-content img {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: contain;
-  margin: 12px 0;
+  margin: auto;
 }
 
 #modalDesc {
@@ -700,6 +700,10 @@ button.glow-on-hover:hover:before {
     padding-right: 10px;
   }
 
+  .indigo {
+    padding-bottom: 60px;
+  }
+
   .cards-container {
     gap: 4px;
   }
@@ -718,11 +722,18 @@ button.glow-on-hover:hover:before {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  font-weight: bold;
   cursor: pointer;
   font-size: 18px;
   color: #333;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+#modalTitle {
+  margin-bottom: 10px;
+}
+
+#modalImage {
+  margin-bottom: 10px;
 }
 
 .modal-nav--prev {

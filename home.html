@@ -6,6 +6,10 @@
     <title>Метафорические карты</title>
     <meta name="theme-color" content="#0a3d62" />
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
   </head>
 
   <body>
@@ -46,11 +50,14 @@
       <div id="cardsContainer" class="cards-container"></div>
     </section>
 
-    <!-- Модальное окно -->
     <div id="modal" class="modal hidden">
       <div class="modal-content">
-        <button id="modalPrev" class="modal-nav modal-nav--prev">&lt;</button>
-        <button id="modalNext" class="modal-nav modal-nav--next">&gt;</button>
+        <button id="modalPrev" class="modal-nav modal-nav--prev">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button id="modalNext" class="modal-nav modal-nav--next">
+          <i class="fas fa-chevron-right"></i>
+        </button>
         <span id="closeModal" class="close">&times;</span>
         <h3 id="modalTitle"></h3>
         <img id="modalImage" src="" alt="" />
