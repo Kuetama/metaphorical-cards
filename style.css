@@ -767,5 +767,5 @@ button.glow-on-hover:hover:before {
 }
 
 .card-preview__description {
-  /* стили по умолчанию, можно расширить при необходимости */
+  margin-bottom: 20px;
 }
