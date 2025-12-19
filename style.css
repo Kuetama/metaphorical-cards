@@ -164,7 +164,8 @@ section {
 }
 
 .indigo {
-  /* background: linear-gradient(to bottom, #0a3d62 5%, #11497b 95%); */
+  padding-bottom: 80px;
+  align-content: end;
   background: linear-gradient(to bottom, #0a3d62, #1e6091, #1e6091);
 }
 
@@ -397,7 +398,7 @@ button.glow-on-hover:hover:before {
 }
 
 .logo {
-  padding: 180px 10px 80px;
+  padding-bottom: 80px;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
@@ -672,6 +673,7 @@ button.glow-on-hover:hover:before {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 20px;
 }
 
 .close {
@@ -733,4 +735,26 @@ button.glow-on-hover:hover:before {
 
 .modal-nav:hover {
   background: white;
+}
+
+.card-preview {
+  display: inline-block;
+  text-align: center;
+  line-height: 2vh;
+  max-width: 320px;
+}
+
+.card-preview__image {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.card-preview__title {
+  /* margin-top: 8px; */
+  font-weight: normal;
+}
+
+.card-preview__description {
+  /* стили по умолчанию, можно расширить при необходимости */
 }

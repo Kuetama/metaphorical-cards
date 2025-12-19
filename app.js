@@ -234,16 +234,16 @@ function showThreeRandomCards() {
   if (!currentDeck) return alert("Нет активной колоды!");
   const cards = currentDeck.cards;
   const unique = [...new Set(Array.from({ length: 100 }, () => Math.floor(Math.random() * cards.length)))].slice(0, 3);
-  
+
   let html = unique.map(i => {
     const c = cards[i];
-    return `<div style="display:inline-block;margin:10px;text-align:center;max-width:300px;">
-      <img src="${c.image}" style="width:100%;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,0.2);">
-      <div style="margin-top:8px;font-weight:bold;">${c.title}</div>
-      <div>${c.description}</div>
+    return `<div class="card-preview">
+      <img src="${c.image}" alt="${c.title}" class="card-preview__image">
+      <div class="card-preview__title">${c.title}</div>
+      <div class="card-preview__description">${c.description}</div>
     </div>`;
   }).join('');
-  
+
   modalSource = 'three';
   document.getElementById("modalTitle").textContent = "Три карты";
   document.getElementById("modalImage").style.display = "none";
@@ -252,6 +252,7 @@ function showThreeRandomCards() {
   document.getElementById("modalNext").style.display = "none";
   document.getElementById("modal").classList.remove("hidden");
 }
+
 
 function shuffleOnTable() {
   const container = document.getElementById("cardsContainer");
