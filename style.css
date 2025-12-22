@@ -754,6 +754,13 @@ button.glow-on-hover:hover:before {
   background: white;
 }
 
+.fas {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
 .card-preview {
   display: inline-block;
   text-align: center;
