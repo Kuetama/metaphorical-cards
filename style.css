@@ -658,6 +658,9 @@ button.glow-on-hover:hover:before {
   overflow-y: auto;
   text-align: center;
   position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .modal-content img {
@@ -673,6 +676,7 @@ button.glow-on-hover:hover:before {
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+  width: 100%;
 }
 
 .close {
@@ -729,6 +733,7 @@ button.glow-on-hover:hover:before {
 
 #modalTitle {
   margin-bottom: 10px;
+  width: 100%;
 }
 
 #modalImage {
