@@ -193,7 +193,7 @@ function showCardModal(card, index) {
   title.textContent = card.title;
   image.src = card.image;
   desc.textContent = card.description;
-  image.style.display = "flex";
+  image.style.display = "block";
   desc.style.display = "flex";
 
   if (modalSource === 'table') {
