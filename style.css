@@ -589,7 +589,6 @@ button.glow-on-hover:hover:before {
 }
 
 .deck-name {
-  font-size: ;
   color: #fff;
   margin-bottom: 4px;
   display: block;
@@ -734,6 +733,8 @@ button.glow-on-hover:hover:before {
 
 #modalImage {
   margin-bottom: 10px;
+  height: 90%;
+  width: auto;
 }
 
 .modal-nav--prev {
