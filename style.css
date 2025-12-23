@@ -828,12 +828,6 @@ button.glow-on-hover:hover:before {
   padding: 10px;
 }
 
-.card-preview {
-  flex: 1 1 200px;
-  max-width: 280px;
-  text-align: center;
-}
-
 @media (max-width: 576px) {
   .three-cards-container {
     flex-direction: column;
@@ -846,10 +840,14 @@ button.glow-on-hover:hover:before {
 }
 
 .card-preview {
-  display: inline-block;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  flex: 1 1 200px;
   text-align: center;
   line-height: 2vh;
   max-width: 320px;
+  gap: 10px;
 }
 
 .card-preview__image {
