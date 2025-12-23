@@ -136,6 +136,7 @@ h3 {
 h1 {
   margin-bottom: 20px;
   text-align: center;
+  font-size: 20px;
 }
 
 h2 {
@@ -143,6 +144,11 @@ h2 {
   max-width: 900px;
   margin: auto;
   padding-left: 10px;
+  font-size: 18px;
+}
+
+h3 {
+  font-size: 16px;
 }
 
 a {
@@ -170,7 +176,6 @@ section {
 }
 
 .content {
-  gap: 15px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -198,22 +203,16 @@ section {
 
 .how {
   color: #0a3d62;
+  font-size: 14px;
+  margin-bottom: 15px;
 }
 
-/* button {
-  padding: 8px 16px;
-  background: #3498db;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  margin: 4px 4px 4px 0;
+.title-how {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 20px;
+  color: #0a3d62;
 }
-
-button:hover {
-  background: #2980b9;
-} */
 
 .default-btn {
   background: #3498db;
@@ -863,4 +862,50 @@ button.glow-on-hover:hover:before {
 
 .card-preview__description {
   margin-bottom: 20px;
+}
+
+details summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  cursor: pointer;
+  list-style: none;
+  /* Убираем любые неожиданные отступы */
+  margin: 0;
+  padding: 0;
+}
+
+/* Скрытие стандартного маркера */
+details summary::marker,
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Кастомный маркер */
+details summary::before {
+  content: "▶";
+  transition: transform 0.2s ease;
+  font-size: 1.5rem; /* или любое значение */
+  color: var(--indigo);
+  margin: 0 0 20px 0;
+  /* Ключевые свойства для точного выравнивания */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Фиксированная высота = высоте строки h2 */
+  height: 1.5rem; /* ← должно совпадать с line-height h2 */
+  /* Или: использовать line-height + vertical-align reset */
+}
+
+details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+/* Заголовок внутри summary */
+details summary h2.how {
+  margin: 0 0 20px 0;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5rem; /* ← важно! */
 }
