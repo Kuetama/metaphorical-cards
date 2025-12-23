@@ -644,6 +644,7 @@ button.glow-on-hover:hover:before {
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  overflow-x: auto;
 }
 
 .modal.hidden {
