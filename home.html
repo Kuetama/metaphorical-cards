@@ -51,18 +51,20 @@
     </section>
 
     <div id="modal" class="modal hidden">
-      <div class="modal-content">
-        <button id="modalPrev" class="modal-nav modal-nav--prev">
-          <i class="fas fa-chevron-left"></i>
-        </button>
-        <button id="modalNext" class="modal-nav modal-nav--next">
-          <i class="fas fa-chevron-right"></i>
-        </button>
-        <span id="closeModal" class="close">&times;</span>
-        <h3 id="modalTitle"></h3>
-        <img id="modalImage" src="" alt="" />
-        <div id="modalDesc"></div>
-      </div>
+      <div id="modalTitle"></div>
+      <img id="modalImage" class="modal-image" />
+      <div id="modalText"></div>
+      <!-- для описания при 1 карте -->
+      <div id="modalThree"></div>
+      <!-- ТОЛЬКО для 3 карт -->
+
+      <button id="modalPrev" class="modal-nav modal-nav--prev hidden">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button id="modalNext" class="modal-nav modal-nav--next hidden">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+      <button id="closeModal" class="close">&times;</button>
     </div>
 
     <script src="app.js"></script>

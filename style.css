@@ -640,6 +640,7 @@ button.glow-on-hover:hover:before {
   height: 100%;
   background: rgba(0, 0, 0, 0.85);
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   z-index: 1000;
@@ -653,21 +654,27 @@ button.glow-on-hover:hover:before {
   background: rgba(13, 134, 143, 0.3);
   padding: 10px;
   border-radius: 12px;
-  max-width: 90%;
-  height: 90%;
-  overflow-y: auto;
+  max-width: 95vw;
+  max-height: 95vh;
+  width: fit-content;
+  height: fit-content; /* ← не фиксировано! */
+  padding: 20px;
+  overflow: auto;
   text-align: center;
   position: relative;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
 }
 
 .modal-content img {
-  width: 100%;
-  height: 100%;
+  max-width: 90vw;
+  max-height: 70vh; /* ← ключевое ограничение */
+  width: auto;
+  height: auto;
   object-fit: contain;
-  margin: auto;
+  display: block;
+  margin: 10px auto;
 }
 
 #modalDesc {
@@ -687,14 +694,15 @@ button.glow-on-hover:hover:before {
   font-size: 28px;
   font-weight: normal;
   cursor: pointer;
-  /* background: rgba(255,255,255,0.5); */
   width: 32px;
   height: 32px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* box-shadow: 0 2px 6px rgba(0,0,0,0.2); */
+  background: transparent; /* или background-color: transparent; */
+  border: none;
+  color: inherit;
 }
 
 @media (max-width: 567px) {
@@ -733,16 +741,7 @@ button.glow-on-hover:hover:before {
   align-items: center;
   padding: 0;
   line-height: 1;
-}
-
-.modal-nav .fas {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
   vertical-align: middle;
-  /* При необходимости: */
-  /* transform: translateY(-1px); */
 }
 
 .modal-nav:hover {
@@ -757,7 +756,7 @@ button.glow-on-hover:hover:before {
 }
 
 .modal-nav--prev {
-  display: flex !important;
+  /* display: flex !important; */
   justify-content: center;
   align-items: center;
 }
@@ -765,12 +764,84 @@ button.glow-on-hover:hover:before {
 #modalTitle {
   margin-bottom: 10px;
   width: 100%;
+  text-align: center;
 }
 
 #modalImage {
   margin-bottom: 10px;
   height: 90%;
   width: auto;
+}
+
+.hidden {
+  display: none;
+}
+
+.three-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  padding: 10px;
+}
+
+.card-preview {
+  flex: 1 1 200px;
+  max-width: 280px;
+  text-align: center;
+}
+
+.card-preview img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+@media (max-width: 576px) {
+  .three-cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .card-preview {
+    width: 90%;
+  }
+}
+
+/* Скрытие по умолчанию */
+#modalText,
+#modalThree {
+  display: none;
+}
+
+#modalText {
+  width: 100%;
+  text-align: center;
+}
+
+.three-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px;
+}
+
+.card-preview {
+  flex: 1 1 200px;
+  max-width: 280px;
+  text-align: center;
+}
+
+@media (max-width: 576px) {
+  .three-cards-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .card-preview {
+    width: 90%;
+  }
 }
 
 .card-preview {
