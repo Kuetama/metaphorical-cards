@@ -1,4 +1,4 @@
-const CACHE_NAME = 'metaphor-cards-v1';
+const CACHE_NAME = 'metaphor-cards-v2';
 const urlsToCache = [
   '/',
   '/index.html',

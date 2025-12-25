@@ -1,82 +1,8 @@
-<!DOCTYPE html>
-<html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Метафорические карты</title>
-    <meta name="theme-color" content="#0a3d62" />
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    />
-  </head>
-
-  <body>
-    <header>
-      <h1>Метафорические карты</h1>
-    </header>
-
-    <!-- Загрузка и инструкция -->
-    <section class="top-actions">
-      <input type="file" id="fileInput" accept=".json" style="display: none" />
-      <button class="glow-on-hover" id="loadDeckBtn">Добавить колоду</button>
-      <button class="glow-on-hover" id="howToBtn">
-        Как работать с картами
-      </button>
-    </section>
-
-    <!-- Список сохранённых колод -->
-    <section>
-      <h2>Ваши колоды</h2>
-      <div id="decksList">Загрузка...</div>
-    </section>
-
-    <!-- Управление -->
-    <section class="actions">
-      <button class="glow-on-hover" id="show1Btn">1 карта</button>
-      <button class="glow-on-hover" id="show3Btn">3 карты</button>
-      <!-- <button class="glow-on-hover" id="showAllBtn">Показать все</button> -->
-    </section>
-    <section class="actions">
-      <button class="glow-on-hover" id="shuffleBtn">Перемешать</button>
-      <button class="glow-on-hover" id="clearBtn">Очистить</button>
-      <button class="glow-on-hover" id="toggleBackBtn">Рубашка: ВКЛ</button>
-    </section>
-
-    <!-- Стол -->
-    <section>
-      <div id="deckInfo">Колода не выбрана</div>
-      <div id="cardsContainer" class="cards-container"></div>
-    </section>
-
-    <div id="modal" class="modal hidden">
-      <div id="modalTitle"></div>
-      <img id="modalImage" class="modal-image" />
-      <div id="modalText"></div>
-      <!-- для описания при 1 карте -->
-      <div id="modalThree"></div>
-      <!-- ТОЛЬКО для 3 карт -->
-
-      <button id="modalPrev" class="modal-nav modal-nav--prev hidden">
-        <i class="fas fa-chevron-left"></i>
-      </button>
-      <button id="modalNext" class="modal-nav modal-nav--next hidden">
-        <i class="fas fa-chevron-right"></i>
-      </button>
-      <button id="closeModal" class="close">&times;</button>
-    </div>
-
-    <script src="app.js"></script>
-    <script>
-      if ("serviceWorker" in navigator) {
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Метафорические карты</title><meta name="theme-color" content="#0a3d62"><link rel="stylesheet" href="main.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"></head><body><header><h1>Метафорические карты</h1></header><!-- Загрузка и инструкция --><section class="top-actions"><input type="file" id="fileInput" accept=".json" style="display: none"> <button class="glow-on-hover" id="loadDeckBtn">Добавить колоду</button> <button class="glow-on-hover" id="howToBtn">Как работать с картами</button></section><!-- Список сохранённых колод --><section><h2>Ваши колоды</h2><div id="decksList">Загрузка...</div></section><!-- Управление --><section class="actions"><button class="glow-on-hover" id="show1Btn">1 карта</button> <button class="glow-on-hover" id="show3Btn">3 карты</button><!-- <button class="glow-on-hover" id="showAllBtn">Показать все</button> --></section><section class="actions"><button class="glow-on-hover" id="shuffleBtn">Перемешать</button> <button class="glow-on-hover" id="clearBtn">Очистить</button> <button class="glow-on-hover" id="toggleBackBtn">Рубашка: ВКЛ</button></section><!-- Стол --><section><div id="deckInfo">Колода не выбрана</div><div id="cardsContainer" class="cards-container"></div></section><div id="modal" class="modal hidden"><div id="modalTitle"></div><div class="modal-image-wrapper"><img id="modalImage" class="modal-image"><div id="modalText"></div><!-- для описания при 1 карте --><div id="modalThree"></div><!-- ТОЛЬКО для 3 карт --> <button id="modalPrev" class="modal-nav modal-nav--prev hidden"><i class="fas fa-chevron-left"></i></button> <button id="modalNext" class="modal-nav modal-nav--next hidden"><i class="fas fa-chevron-right"></i></button> <button id="closeModal" class="close">&times;</button></div></div><script src="main.js"></script><script>if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           navigator.serviceWorker
             .register("/sw.js")
             .then((reg) => console.log("✅ SW registered:", reg.scope))
             .catch((err) => console.error("❌ SW registration failed:", err));
         });
-      }
-    </script>
-  </body>
-</html>
+      }</script></body></html>
